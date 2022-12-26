@@ -7,8 +7,17 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class ParentDataComponent  implements OnInit {
 
-@Input() name: string = '';
+@Input()
+ name: string = '';
 
+@Input()
+email:string =  '';
+
+
+age:number = 0;
+cpf:string  = '';
+
+@Input() car!: {modelo:string, placa:string}
 
 
 

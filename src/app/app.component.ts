@@ -10,7 +10,14 @@ constructor(){}
 ngOnInit(): void {
 
 }
-  usuario = "Joaquim"
+  userName = "Joaquim"
   email = "jaaqim123@gmail.com"
   title = 'crud-angular';
+
+
+  car = {
+    modelo:"Gol",
+    placa:"ASN1234"
+  }
+
 }
