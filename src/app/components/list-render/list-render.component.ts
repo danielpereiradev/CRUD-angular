@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Devs } from '../Devs';
+import { ListService } from 'src/app/service/list.service';
 
 @Component({
   selector: 'app-list-render',
@@ -8,22 +10,34 @@ import { Component, OnInit } from '@angular/core';
 export class ListRenderComponent implements OnInit {
 
 
-
-
-
-devs = [
-{nome:"Lucas", idade:30},
-{nome: "Fabio", idade:20},
-{nome:"Gabriel", idade:30},
-{nome:"Lucas", idade:30},
-
-]
-
-
-constructor(){}
+constructor(private listService:ListService){
+}
 
   ngOnInit(): void {
 
   }
+
+devs: Devs[] = [
+{id:1,nome:"Lucas", idade:30},
+{id:2,nome: "Fabio", idade:20},
+{id:3,nome:"Gabriel", idade:30},
+{id:4,nome:"Lucas", idade:30},
+]
+
+detalis:string = ""
+
+showId(dev:Devs){
+ this.detalis=` O Id de ${dev.nome} é ${dev.id}`
+}
+
+
+deleteDev(dev:Devs){
+  console.log("Deletando Deve ")
+  this.listService.remove(this.devs,  dev)
+}
+
+
+
+
 
 }

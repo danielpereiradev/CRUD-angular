@@ -4,9 +4,13 @@
 <ul>
 
 <li   *ngFor="let p of  devs">
-   Nome: {{p.nome}}
-    Idade: {{p.idade}}
+   Nome: {{p.nome}} - Idade: {{p.idade}}
+
+   <button (click)="showId(p)">Show id</button>
+  <button (click)="deleteDev(p)">Excluir</button>
+
 </li>
+<h3>{{detalis}}</h3>
 
 
 

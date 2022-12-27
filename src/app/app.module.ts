@@ -1,5 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { FormsModule } from '@angular/forms';
+
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -9,6 +11,8 @@ import { ParentDataComponent } from './components/parent-data/parent-data.compon
 import { IfRenderComponent } from './components/if-render/if-render.component';
 import { EventosComponent } from './components/eventos/eventos.component';
 import { ListRenderComponent } from './components/list-render/list-render.component';
+import { PipesComponent } from './components/pipes/pipes.component';
+import { TowWayBindingComponent } from './components/tow-way-binding/tow-way-binding.component';
 
 @NgModule({
   declarations: [
@@ -18,11 +22,18 @@ import { ListRenderComponent } from './components/list-render/list-render.compon
     ParentDataComponent,
     IfRenderComponent,
     EventosComponent,
-    ListRenderComponent
+    ListRenderComponent,
+    PipesComponent,
+    TowWayBindingComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule
+
+
+
+
   ],
   providers: [],
   bootstrap: [AppComponent]
