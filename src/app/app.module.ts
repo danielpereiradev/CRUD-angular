@@ -8,6 +8,7 @@ import { DirectivesComponent } from './components/directives/directives.componen
 import { ParentDataComponent } from './components/parent-data/parent-data.component';
 import { IfRenderComponent } from './components/if-render/if-render.component';
 import { EventosComponent } from './components/eventos/eventos.component';
+import { ListRenderComponent } from './components/list-render/list-render.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { EventosComponent } from './components/eventos/eventos.component';
     DirectivesComponent,
     ParentDataComponent,
     IfRenderComponent,
-    EventosComponent
+    EventosComponent,
+    ListRenderComponent
   ],
   imports: [
     BrowserModule,
