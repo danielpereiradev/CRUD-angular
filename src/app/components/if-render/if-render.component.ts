@@ -9,6 +9,13 @@ export class IfRenderComponent implements OnInit {
 
   cansShow:  boolean = true
 
+  userName: string  =   ""
+
+  name:string = "João"
+
+
+
+
 
 
   constructor(){}

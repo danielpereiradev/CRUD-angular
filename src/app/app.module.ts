@@ -7,6 +7,7 @@ import { FistComponentComponent } from './components/fist-component/fist-compone
 import { DirectivesComponent } from './components/directives/directives.component';
 import { ParentDataComponent } from './components/parent-data/parent-data.component';
 import { IfRenderComponent } from './components/if-render/if-render.component';
+import { EventosComponent } from './components/eventos/eventos.component';
 
 @NgModule({
   declarations: [
@@ -14,7 +15,8 @@ import { IfRenderComponent } from './components/if-render/if-render.component';
     FistComponentComponent,
     DirectivesComponent,
     ParentDataComponent,
-    IfRenderComponent
+    IfRenderComponent,
+    EventosComponent
   ],
   imports: [
     BrowserModule,
