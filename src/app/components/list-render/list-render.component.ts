@@ -11,18 +11,14 @@ export class ListRenderComponent implements OnInit {
 
 
 constructor(private listService:ListService){
+  this.getDevs()
 }
 
   ngOnInit(): void {
 
   }
 
-devs: Devs[] = [
-{id:1,nome:"Lucas", idade:30},
-{id:2,nome: "Fabio", idade:20},
-{id:3,nome:"Gabriel", idade:30},
-{id:4,nome:"Lucas", idade:30},
-]
+devs: Devs[] = []
 
 detalis:string = ""
 
@@ -34,6 +30,10 @@ showId(dev:Devs){
 deleteDev(dev:Devs){
   console.log("Deletando Deve ")
   this.listService.remove(this.devs,  dev)
+}
+getDevs():void{
+  this.listService.getAll().subscribe((devs)=> (this.devs = devs))
+  
 }
 
 
