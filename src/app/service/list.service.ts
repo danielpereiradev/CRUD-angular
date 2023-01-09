@@ -11,11 +11,17 @@ export class ListService {
 
   constructor(private http: HttpClient) { }
 
-   remove(devs:Devs[], dev:Devs){
-     return devs.filter((a) =>  dev.nome !== a.nome)
+   remove(id:number){
+    return this.http.delete<Devs>(`${this.apiUlr}/${id}`)
+    //  return devs.filter((a) =>  dev.nome !== a.nome)
    }
    getAll():Observable<Devs[]>{
      return this.http.get<Devs[]>(this.apiUlr)
+
+   }
+
+   getItem(id:number):Observable<Devs>{
+    return this.http.get<Devs>(`${this.apiUlr}${id}`)
 
    }
 

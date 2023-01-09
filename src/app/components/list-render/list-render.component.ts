@@ -28,12 +28,12 @@ showId(dev:Devs){
 
 
 deleteDev(dev:Devs){
-  console.log("Deletando Deve ")
-  this.listService.remove(this.devs,  dev)
+  this.devs  =this.devs.filter((a) =>  dev.nome !== a.nome)
+  this.listService.remove(dev.id).subscribe()
 }
 getDevs():void{
   this.listService.getAll().subscribe((devs)=> (this.devs = devs))
-  
+
 }
 
 

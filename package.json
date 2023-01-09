@@ -5,7 +5,8 @@
     "ng": "ng",
     "start": "ng serve --proxy-config proxy.config.js",
     "build": "ng build",
-    "watch": "ng build --watch --configuration development"
+    "watch": "ng build --watch --configuration development",
+    "server": "json-server --watch dev.json"
   },
   "private": true,
   "dependencies": {

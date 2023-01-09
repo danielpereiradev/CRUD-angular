@@ -4,7 +4,7 @@
 <ul>
 
 <li   *ngFor="let p of  devs">
-   Nome: {{p.nome}} - Idade: {{p.idade}}
+   Nome:<a  routerLink="/list/{{p.id}}">{{  p.nome}}</a> idade{{p.idade}}
 
    <button (click)="showId(p)">Show id</button>
   <button (click)="deleteDev(p)">Excluir</button>
