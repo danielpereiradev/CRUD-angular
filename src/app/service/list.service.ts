@@ -7,22 +7,26 @@ import { Observable, observable } from 'rxjs';
   providedIn: 'root'
 })
 export class ListService {
-  private apiUlr= "http://localhost:3000/devs"
+  private apiURL= "/api/developer"
 
   constructor(private http: HttpClient) { }
 
    remove(id:number){
-    return this.http.delete<Devs>(`${this.apiUlr}/${id}`)
+    return this.http.delete<Devs>(`${this.apiURL}/${id}`)
     //  return devs.filter((a) =>  dev.nome !== a.nome)
    }
    getAll():Observable<Devs[]>{
-     return this.http.get<Devs[]>(this.apiUlr)
+     return this.http.get<Devs[]>(this.apiURL)
 
    }
 
    getItem(id:number):Observable<Devs>{
-    return this.http.get<Devs>(`${this.apiUlr}${id}`)
+    return this.http.get<Devs>(`${this.apiURL}${id}`)
 
    }
+
+   save(dev:Devs){
+    return this.http.post<Devs>(this.apiURL,dev)
+  }
 
 }

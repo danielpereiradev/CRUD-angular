@@ -23,12 +23,12 @@ devs: Devs[] = []
 detalis:string = ""
 
 showId(dev:Devs){
- this.detalis=` O Id de ${dev.nome} é ${dev.id}`
+ this.detalis=` O Id de ${dev.name} é ${dev.id}`
 }
 
 
 deleteDev(dev:Devs){
-  this.devs  =this.devs.filter((a) =>  dev.nome !== a.nome)
+  this.devs  =this.devs.filter((a) =>  dev.name !== a.name)
   this.listService.remove(dev.id).subscribe()
 }
 getDevs():void{

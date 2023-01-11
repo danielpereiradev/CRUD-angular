@@ -1,3 +1,6 @@
+/* @import '/node_modules/bootstrap/dist/css/bootstrap-reboot.min.css'; */
+
+
 *{
 
 margin: 0;
@@ -6,10 +9,17 @@ font-family: Helvetica;
 }
 
 a{
-  color:orange;
+  color:rgb(222, 0, 0);
+  text-decoration: none;
+}
+
+li{
+  text-decoration: none;
+
 }
 
 body{
+  background-color: rgba(18, 72, 45, 0.27);
   padding-bottom:500px ;
 }
 
@@ -18,3 +28,4 @@ body{
   padding: 2em;
 
 }
+

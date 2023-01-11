@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
 
 
@@ -16,6 +16,7 @@ import { EventosComponent } from './components/eventos/eventos.component';
 import { ListRenderComponent } from './components/list-render/list-render.component';
 import { PipesComponent } from './components/pipes/pipes.component';
 import { TowWayBindingComponent } from './components/tow-way-binding/tow-way-binding.component';
+import { FormsComponent } from './components/forms/forms.component';
 
 @NgModule({
   declarations: [
@@ -27,13 +28,15 @@ import { TowWayBindingComponent } from './components/tow-way-binding/tow-way-bin
     EventosComponent,
     ListRenderComponent,
     PipesComponent,
-    TowWayBindingComponent
+    TowWayBindingComponent,
+    FormsComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    ReactiveFormsModule
 
 
 

@@ -1,18 +1,27 @@
-<p>header</p>
-<nav>
-<a routerLink="/">Home</a><br>
-<a routerLink="/list">List</a>
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+      <p>header</p>
+  <nav>
+  <a routerLink="/">Home</a><br>
+  <a routerLink="/list">List</a><br>
+  <a  routerLink="/eventos">Eventos</a><br>
+  <a  routerLink="/if">If</a>
+  <a routerLink="/forms">login</a>
+  </nav>
 
-</nav>
+  <h1>Hello Angular !</h1>
+  <!-- <app-fist-component></app-fist-component> -->
+  <!-- <app-parent-data [name] = "userName" [email] = "email"  [car] = "car"></app-parent-data> -->
+  <!-- <app-directives></app-directives> -->
+  <!-- <app-if-render></app-if-render>
+  <app-eventos></app-eventos>
+  <app-list-render></app-list-render>
+  <app-pipes></app-pipes>
+  <app-tow-way-binding></app-tow-way-binding> -->
+  <router-outlet></router-outlet>
+  <p>footer</p>
 
-<h1>Hello Angular !</h1>
-<!-- <app-fist-component></app-fist-component> -->
-<!-- <app-parent-data [name] = "userName" [email] = "email"  [car] = "car"></app-parent-data> -->
-<!-- <app-directives></app-directives> -->
-<!-- <app-if-render></app-if-render>
-<app-eventos></app-eventos>
-<app-list-render></app-list-render>
-<app-pipes></app-pipes>
-<app-tow-way-binding></app-tow-way-binding> -->
-<router-outlet></router-outlet>
-<p>footer</p>
+    </div>
+  </div>
+</div>

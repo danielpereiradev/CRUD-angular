@@ -1,3 +1,6 @@
+import { FormsComponent } from './components/forms/forms.component';
+import { TowWayBindingComponent } from './components/tow-way-binding/tow-way-binding.component';
+import { IfRenderComponent } from './components/if-render/if-render.component';
 import { EventosComponent } from './components/eventos/eventos.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
@@ -12,7 +15,10 @@ import { ListRenderComponent } from './components/list-render/list-render.compon
 const routes:Routes= [
   {path:'',component:FistComponentComponent},
   {path: 'list', component:ListRenderComponent},
-  {path: 'list/:id', component:ItemDetailComponent}
+  {path: 'list/:id', component:ItemDetailComponent},
+  {path:'eventos',component:EventosComponent},
+  {path:'if',component:IfRenderComponent},
+  {path:'forms',component:FormsComponent}
 
 ]
 

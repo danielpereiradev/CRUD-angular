@@ -1,22 +1,48 @@
-<div class="aula">
+<!-- <div class="aula">
   <p>Angular:</p>
 
 <ul>
 
-<li   *ngFor="let p of  devs">
-   Nome:<a  routerLink="/list/{{p.id}}">{{  p.nome}}</a> idade{{p.idade}}
+<li   *ngFor="let dev of  devs">
+   Nome:<a  routerLink="/list/{{dev.id}}">{{  dev.name}}</a> idade{{dev.age}}
 
-   <button (click)="showId(p)">Show id</button>
-  <button (click)="deleteDev(p)">Excluir</button>
+   <button  class="show" (click)="showId(dev)">Show id</button>
+  <button class="excluir" (click)="deleteDev(dev)">Excluir</button>
 
 </li>
 <h3>{{detalis}}</h3>
-
-
-
-
-
 </ul>
 
 
-</div>
+</div> -->
+
+
+
+
+
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col"></th>
+        <th scope="col">Id</th>
+        <th scope="col">Nome</th>
+        <th scope="col">Idade</th>
+
+      </tr>
+    </thead>
+    <tbody>
+      <tr  *ngFor="let dev of  devs">
+        <th scope="row"></th>
+        <td>{{dev.id}}</td>
+        <td>{{dev.name}}</td>
+        <td>{{dev.age}}</td>
+       <!-- <button class="excluir" type="submit" (click)="deleteDev(dev)">Excluir</button> -->
+        <button type="button" class="excluir"(click)="deleteDev(dev)">Excluir</button>
+
+
+
+      </tr>
+
+
+    </tbody>
+  </table>
