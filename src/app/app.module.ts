@@ -17,6 +17,7 @@ import { ListRenderComponent } from './components/list-render/list-render.compon
 import { PipesComponent } from './components/pipes/pipes.component';
 import { TowWayBindingComponent } from './components/tow-way-binding/tow-way-binding.component';
 import { FormsComponent } from './components/forms/forms.component';
+import { PaginaPrincipalComponent } from './components/pagina-principal/pagina-principal.component';
 
 @NgModule({
   declarations: [
@@ -30,6 +31,7 @@ import { FormsComponent } from './components/forms/forms.component';
     PipesComponent,
     TowWayBindingComponent,
     FormsComponent,
+    PaginaPrincipalComponent,
   ],
   imports: [
     BrowserModule,

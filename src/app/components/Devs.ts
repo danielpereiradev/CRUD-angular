@@ -1,5 +1,6 @@
 export interface  Devs{
-  id:number
+
   name:string
-age:number
+  idadeDev:number
+  id:number
 }

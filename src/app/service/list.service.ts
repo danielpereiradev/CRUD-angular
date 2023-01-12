@@ -26,7 +26,7 @@ export class ListService {
    }
 
    save(dev:Devs){
-    return this.http.post<Devs>(this.apiURL,dev)
+    return  this.http.post<Devs>(this.apiURL,dev).subscribe(result=>console.log(result))
   }
 
 }
