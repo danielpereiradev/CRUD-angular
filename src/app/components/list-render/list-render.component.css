@@ -31,8 +31,12 @@ li{
 
 }
 
-.btn{
-  color:black;
-  border-radius: 10px;
-  padding: 10px;
+.btn-light{
+  color:rgb(0, 0, 0);
+
+  border: none;
+
+}
+.btn-light:hover{
+color:rgba(235, 92, 92, 0.894)
 }

@@ -7,19 +7,20 @@
 <form  [formGroup]="form">
 
 <div   class="forms-gruop">
+<label   for="createDev">Nome</label>
 <input type="text"  class="form-control" formControlName="name" placeholder="Digite seu nome">
 <small id="emailHelp" class="forms-txt  text-muted"></small>
 </div>
 
 <div class="forms-gruop">
 <label   for="createDev">Idade</label>
-<input type="number" class="form-control" formArrayName="idadeDev" placeholder="Digite seu idade">
+<input type="number" class="form-control" formControlName="age" placeholder="Digite seu idade">
 <small id="emailHelp" class="forms-txt  text-muted"></small>
 </div>
 
-
 <button type="submit"  class="btn btn-primary" (click)="onSubmit()">Salvar</button>
 <button type="submit"  class="btn btn-danger"(click)="onCancel()">Cancelar</button>
+
 
 </form>
 

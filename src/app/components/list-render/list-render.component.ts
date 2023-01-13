@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Devs } from '../Devs';
 import { ListService } from 'src/app/service/list.service';
 
@@ -8,6 +8,11 @@ import { ListService } from 'src/app/service/list.service';
   styleUrls: ['./list-render.component.css']
 })
 export class ListRenderComponent implements OnInit {
+
+
+
+  @Input()dev:Devs[]=[]
+  @Output() update= new EventEmitter(false)
 
 
 constructor(private listService:ListService){
@@ -33,6 +38,13 @@ deleteDev(dev:Devs){
 }
 getDevs():void{
   this.listService.getAll().subscribe((devs)=> (this.devs = devs))
+
+}
+updateDev(dev:Devs){
+  console.log("Update!!!!!!!!!!!")
+  this.update.emit(dev)
+
+
 
 }
 

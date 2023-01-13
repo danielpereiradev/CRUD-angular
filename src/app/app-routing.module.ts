@@ -15,7 +15,7 @@ import { ListRenderComponent } from './components/list-render/list-render.compon
 const routes:Routes= [
   {path:'',component:FistComponentComponent},
   {path: 'list', component:ListRenderComponent},
-  {path: 'list/:id', component:ItemDetailComponent},
+  {path: 'updade/:id', component:ItemDetailComponent},
   {path:'eventos',component:EventosComponent},
   {path:'if',component:IfRenderComponent},
   {path:'forms',component:FormsComponent}

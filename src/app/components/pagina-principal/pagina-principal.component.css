@@ -1,0 +1,14 @@
+
+ *{
+  box-sizing: border-box;
+}
+a{
+  padding: 15px;
+  list-style-type: none;
+  display: inline-block;
+
+
+  /* border: solid rgb(94, 137, 89) 1px; */
+
+}
+

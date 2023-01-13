@@ -15,18 +15,22 @@ export class ListService {
     return this.http.delete<Devs>(`${this.apiURL}/${id}`)
     //  return devs.filter((a) =>  dev.nome !== a.nome)
    }
-   getAll():Observable<Devs[]>{
+    getAll():Observable<Devs[]>{
      return this.http.get<Devs[]>(this.apiURL)
 
    }
 
-   getItem(id:number):Observable<Devs>{
+    getItem(id:number):Observable<Devs>{
     return this.http.get<Devs>(`${this.apiURL}${id}`)
 
    }
 
-   save(dev:Devs){
+    save(dev:Devs){
     return  this.http.post<Devs>(this.apiURL,dev).subscribe(result=>console.log(result))
+  }
+
+  update(dev:Devs){
+
   }
 
 }
