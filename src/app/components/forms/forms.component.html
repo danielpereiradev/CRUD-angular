@@ -3,7 +3,10 @@
 
 <div class="tela-login">
   <h2  class="title">Login</h2>
-
+  <!-- <div class="alert alert-success" role="alert">
+    Um simples alerta success. Olha só!
+  </div> -->
+  
 <form  [formGroup]="form">
 
 <div   class="forms-gruop">
@@ -17,8 +20,13 @@
 <input type="number" class="form-control" formControlName="age" placeholder="Digite seu idade">
 <small id="emailHelp" class="forms-txt  text-muted"></small>
 </div>
+  
 
-<button type="submit"  class="btn btn-primary" (click)="onSubmit()">Salvar</button>
+
+<button type="submit"  class="btn btn-primary" (click)="onSubmit()">Salva
+
+
+</button>
 <button type="submit"  class="btn btn-danger"(click)="onCancel()">Cancelar</button>
 
 

@@ -30,14 +30,22 @@ export class FormsComponent implements OnInit {
 
   ngOnInit(): void {
     this.form.value
+    
   }
   onSubmit() {
-    console.log("this.form.value",this.form.value)
 
+    console.log(this.form.value)
+    if(this.form.value.name === null ){
+     this.msgSucesso ==  true
+    }else {
+      this.msgSucesso == false
+    }
     this.service.save(this.form.value)
 
 
   }
+      msgSucesso:boolean = false 
+
 
   onCancel() {
 

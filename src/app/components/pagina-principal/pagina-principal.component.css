@@ -1,14 +1,36 @@
 
  *{
   box-sizing: border-box;
-}
-a{
-  padding: 15px;
-  list-style-type: none;
-  display: inline-block;
 
+}
+.container{
+
+
+}
+li a{
+  color:black;
+  display: inline-block;
+  text-decoration: none;
+  list-style:none;
+  padding: 20px;
+  text-transform: uppercase;
 
   /* border: solid rgb(94, 137, 89) 1px; */
 
+}
+.menu{
+  list-style-type: none ;
+  display:flex;
+  justify-content: center;
+  width: 100%;
+
+
+
+}
+
+li a:hover{
+  color:blue;
+  background-color: rgba(240, 248, 255, 0.219);
+  
 }
 
