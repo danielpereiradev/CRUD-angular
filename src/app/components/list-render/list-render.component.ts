@@ -43,8 +43,10 @@ getDevs():void{
 updateDev(dev:Devs){
   console.log("Update!!!!!!!!!!!")
   this.update.emit(dev)
-
-
+}
+filtroDev(dev:Devs){
+  this.devs = this.devs.filter( (n) => dev.name  !==  n.name).filter((a) => dev.age !== a.age )
+  this.listService.listDevs(dev).subscribe
 
 }
 

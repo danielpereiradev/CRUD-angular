@@ -32,5 +32,8 @@ export class ListService {
   update(dev:Devs){
 
   }
+  listDevs(dev:Devs){
+    return this.http.get<Devs[]>(`${this.apiURL}${dev.name}${dev.age}`)
+  }
 
 }
