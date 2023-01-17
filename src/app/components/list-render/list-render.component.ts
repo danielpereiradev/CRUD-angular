@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Devs } from '../Devs';
 import { ListService } from 'src/app/service/list.service';
+import { Routes } from '@angular/router';
 
 @Component({
   selector: 'app-list-render',
@@ -44,14 +45,20 @@ updateDev(dev:Devs){
   console.log("Update!!!!!!!!!!!")
   this.update.emit(dev)
 }
-filtroDev(dev:Devs){
-  this.devs = this.devs.filter( (n) => dev.name  !==  n.name).filter((a) => dev.age !== a.age )
-  this.listService.listDevs(dev).subscribe
+filtroDev(e:Event,dev:Devs,route:Routes):void{
+  const target =e.target as  HTMLInputElement
+  const value =  target.value
+
+  this.dev=this.devs.filter(d=>{
+   return d.name.toLowerCase().includes(value)
+  })
+  // this.devs = this.devs.filter( (n) => dev.name  !==  n.name).filter((a) => dev.age !== a.age )
+  // this.listService.listDevs(dev).subscribe
 
 }
 
 
 
 
-
 }
+

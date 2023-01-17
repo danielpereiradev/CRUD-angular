@@ -1,7 +1,9 @@
+import { AppComponent } from './../app.component';
 import { Injectable } from '@angular/core';
 import { Devs } from '../components/Devs';
 import { HttpClient } from '@angular/common/http';
 import { Observable, observable } from 'rxjs';
+import { ReturnStatement } from '@angular/compiler';
 
 @Injectable({
   providedIn: 'root'
@@ -30,10 +32,14 @@ export class ListService {
   }
 
   update(dev:Devs){
+    return this.http.put(this.apiURL,dev)
 
   }
   listDevs(dev:Devs){
+
     return this.http.get<Devs[]>(`${this.apiURL}${dev.name}${dev.age}`)
+
   }
+
 
 }

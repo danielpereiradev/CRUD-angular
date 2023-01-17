@@ -5,6 +5,7 @@ import { ControlContainer, FormBuilder, FormGroup, RadioControlValueAccessor } f
 import { config } from 'rxjs';
 import { DeclareVarStmt } from '@angular/compiler';
 import { Devs } from '../Devs';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-forms',
@@ -14,9 +15,9 @@ import { Devs } from '../Devs';
 export class FormsComponent implements OnInit {
 
   form: FormGroup;
+devs:Devs[]=[]
 
-
-  constructor(private formBuilder: FormBuilder, private service: ListService,) {
+  constructor(private formBuilder: FormBuilder, private service: ListService,private toast:ToastrService) {
 
 
     this.form = this.formBuilder.group({
@@ -30,30 +31,33 @@ export class FormsComponent implements OnInit {
 
   ngOnInit(): void {
     this.form.value
-    
+
   }
   onSubmit() {
-
-    console.log(this.form.value)
-    if(this.form.value.name === null ){
-     this.msgSucesso ==  true
-    }else {
-      this.msgSucesso == false
+    if(this.onSubmit.length.valueOf()){
+      this.showSuccess
+    }else{
+      this.showErro()
     }
+    console.log(this.form.value)
     this.service.save(this.form.value)
 
 
   }
-      msgSucesso:boolean = false 
-
+  showSuccess(){
+    this.toast.success("Salvo !!!!")
+  }
 
   onCancel() {
-
-
-
-
+    console.log("Voltar")
 
   }
+  showErro(){
+    this.toast.error("Ocorreu um erro")
+  }
+
+
+
 
 
 }

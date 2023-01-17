@@ -2,18 +2,24 @@
  *{
   box-sizing: border-box;
 
+
+
 }
-.container{
+body{
+
+}
+#cabecario{
+  width: 100%;
 
 
 }
 li a{
   color:black;
-  display: inline-block;
+  /* display: inline-block; */
   text-decoration: none;
   list-style:none;
-  padding: 20px;
-  text-transform: uppercase;
+  /* border-bottom: 1px solid black; */
+  height: 5px;
 
   /* border: solid rgb(94, 137, 89) 1px; */
 
@@ -21,8 +27,12 @@ li a{
 .menu{
   list-style-type: none ;
   display:flex;
-  justify-content: center;
-  width: 100%;
+  justify-content: space-around;
+  padding: 1em;
+  position:relative;
+
+  width: 650px;
+  margin:0px;
 
 
 
@@ -31,6 +41,15 @@ li a{
 li a:hover{
   color:blue;
   background-color: rgba(240, 248, 255, 0.219);
-  
+
 }
 
+.imagem {
+width: 80px;
+height: 80px;
+margin-right: 0.6em;
+display: inline-block;
+}
+.titulo{
+  display: inline-block;
+}

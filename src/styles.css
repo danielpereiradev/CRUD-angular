@@ -10,5 +10,10 @@ font-family: Helvetica;
 
 
 body{
-  background-color: rgba(18, 60, 72, 0.463);
+  background-color: rgba(0, 0, 0, 0.523);
+}
+
+a{
+  text-decoration: none;
+  transition: 0.4s;
 }

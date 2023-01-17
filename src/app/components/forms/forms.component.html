@@ -1,47 +1,57 @@
+<!-- <div *ngIf="onSubmit()" class="alert alert-success" role="alert">
+  Um simples alerta danger. Olha só!
+</div> -->
+<div class="card-header">
 
-  <div class="card-header">
 
-<div class="tela-login">
-  <h2  class="title">Login</h2>
-  <!-- <div class="alert alert-success" role="alert">
+
+
+  <div class="tela-login">
+    <h2 class="title">Cadastro</h2>
+    <!-- <div class="alert alert-success" role="alert">
     Um simples alerta success. Olha só!
   </div> -->
-  
-<form  [formGroup]="form">
 
-<div   class="forms-gruop">
-<label   for="createDev">Nome</label>
-<input type="text"  class="form-control" formControlName="name" placeholder="Digite seu nome">
-<small id="emailHelp" class="forms-txt  text-muted"></small>
+    <form [formGroup]="form" *ngIf="onCancel">
+
+
+      <div class="forms-gruop">
+        <label for="createDev">Nome</label>
+        <input type="text" class="form-control" formControlName="name" placeholder="Digite seu nome">
+        <small id="emailHelp" class="forms-txt  text-muted"></small>
+      </div>
+
+      <div class="forms-gruop">
+        <label for="createDev">Idade</label>
+        <input type="number" class="form-control" formControlName="age" placeholder="Digite sua idade">
+        <small id="emailHelp" class="forms-txt  text-muted"></small>
+
+      </div>
+
+
+
+      <button type="submit" class="btn btn-primary" (click)="showErro()">Salvar
+
+
+      </button>
+      <button type="submit" class="btn btn-danger" (click)="onCancel()">Cancelar
+
+
+      </button>
+
+
+
+
+    </form>
+
+
+
+
+  </div>
 </div>
 
-<div class="forms-gruop">
-<label   for="createDev">Idade</label>
-<input type="number" class="form-control" formControlName="age" placeholder="Digite seu idade">
-<small id="emailHelp" class="forms-txt  text-muted"></small>
-</div>
-  
 
 
-<button type="submit"  class="btn btn-primary" (click)="onSubmit()">Salva
-
-
-</button>
-<button type="submit"  class="btn btn-danger"(click)="onCancel()">Cancelar</button>
-
-
-</form>
-
-
-
-
-</div>
-</div>
-
-
-
-  <!-- <div *ngIf="name !== '' ">
+<!-- <div *ngIf="name !== '' ">
     <p>O nome é {{name}}</p>
   </div> -->
-
-

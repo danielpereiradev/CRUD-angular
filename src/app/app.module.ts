@@ -1,7 +1,8 @@
-import { NgModule } from '@angular/core';
+import { NgModule, Injectable } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
+import { ToastrModule, ToastrService, ToastrConfig } from 'ngx-toastr';
 
 
 
@@ -18,6 +19,7 @@ import { PipesComponent } from './components/pipes/pipes.component';
 import { TowWayBindingComponent } from './components/tow-way-binding/tow-way-binding.component';
 import { FormsComponent } from './components/forms/forms.component';
 import { PaginaPrincipalComponent } from './components/pagina-principal/pagina-principal.component';
+import { BuscaDevComponent } from './components/busca-dev/busca-dev.component';
 
 @NgModule({
   declarations: [
@@ -32,13 +34,18 @@ import { PaginaPrincipalComponent } from './components/pagina-principal/pagina-p
     TowWayBindingComponent,
     FormsComponent,
     PaginaPrincipalComponent,
+    BuscaDevComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    ToastrModule.forRoot({
+
+    }),
+
 
 
 
