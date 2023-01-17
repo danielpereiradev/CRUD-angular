@@ -1,6 +1,7 @@
+import { HttpClient } from '@angular/common/http';
 import { Routes } from '@angular/router';
 import { ListService } from './../../service/list.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, ErrorHandler, OnInit } from '@angular/core';
 import { ControlContainer, FormBuilder, FormGroup, RadioControlValueAccessor } from '@angular/forms';
 import { config } from 'rxjs';
 import { DeclareVarStmt } from '@angular/compiler';
@@ -34,12 +35,12 @@ devs:Devs[]=[]
 
   }
   onSubmit() {
-    if(this.onSubmit.length.valueOf()){
-      this.showSuccess
-    }else{
-      this.showErro()
-    }
-    console.log(this.form.value)
+    // if(this.form.clearValidators){
+    //   this.showErro()
+    // }else{
+    //   this.showSuccess
+    // }
+
     this.service.save(this.form.value)
 
 
@@ -49,7 +50,7 @@ devs:Devs[]=[]
   }
 
   onCancel() {
-    console.log("Voltar")
+    console.log("Voltar !!!")
 
   }
   showErro(){
