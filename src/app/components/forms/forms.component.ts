@@ -3,7 +3,7 @@ import { Routes } from '@angular/router';
 import { ListService } from './../../service/list.service';
 import { Component, ErrorHandler, OnInit } from '@angular/core';
 import { ControlContainer, FormBuilder, FormGroup, RadioControlValueAccessor } from '@angular/forms';
-import { config } from 'rxjs';
+import { config, from } from 'rxjs';
 import { DeclareVarStmt } from '@angular/compiler';
 import { Devs } from '../Devs';
 import { ToastrService } from 'ngx-toastr';
@@ -35,11 +35,12 @@ devs:Devs[]=[]
 
   }
   onSubmit() {
-    // if(this.form.clearValidators){
-    //   this.showErro()
-    // }else{
-    //   this.showSuccess
-    // }
+    console.log(this.form.status )
+    if(this.form.status != "VALID"){
+      this.showErro()
+    }else{ 
+      this.showSuccess()
+    }
 
     this.service.save(this.form.value)
 

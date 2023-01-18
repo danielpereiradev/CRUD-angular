@@ -15,10 +15,15 @@
     <form [formGroup]="form" *ngIf="onCancel">
 
 
-      <div class="forms-gruop">
+      <div class="forms-gruop"> 
         <label for="createDev">Nome</label>
-        <input type="text" class="form-control" formControlName="name" placeholder="Digite seu nome">
+        <input type="text" class="form-control" formControlName="name" placeholder="Digite seu nome"
+        required name>
+        
+        
         <small id="emailHelp" class="forms-txt  text-muted"></small>
+        
+       
       </div>
 
       <div class="forms-gruop">
@@ -27,8 +32,7 @@
         <small id="emailHelp" class="forms-txt  text-muted"></small>
 
       </div>
-
-
+  
 
       <button type="submit" class="btn btn-primary" (click)="onSubmit()">Salvar
 
