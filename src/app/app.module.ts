@@ -21,6 +21,7 @@ import { TowWayBindingComponent } from './components/tow-way-binding/tow-way-bin
 import { FormsComponent } from './components/forms/forms.component';
 import { PaginaPrincipalComponent } from './components/pagina-principal/pagina-principal.component';
 import { BuscaDevComponent } from './components/busca-dev/busca-dev.component';
+import { TelaEdtarComponent } from './components/tela-edtar/tela-edtar.component';
 
 @NgModule({
   declarations: [
@@ -36,6 +37,7 @@ import { BuscaDevComponent } from './components/busca-dev/busca-dev.component';
     FormsComponent,
     PaginaPrincipalComponent,
     BuscaDevComponent,
+    TelaEdtarComponent,
   ],
   imports: [
     BrowserModule,

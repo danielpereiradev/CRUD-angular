@@ -4,6 +4,8 @@ import { Devs } from '../components/Devs';
 import { HttpClient } from '@angular/common/http';
 import { Observable, observable } from 'rxjs';
 import { ReturnStatement } from '@angular/compiler';
+import { ToastrService } from 'ngx-toastr';
+
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +13,7 @@ import { ReturnStatement } from '@angular/compiler';
 export class ListService {
   private apiURL= "/api/developer"
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient,private toast:ToastrService) { }
 
    remove(id:number){
     return this.http.delete<Devs>(`${this.apiURL}/${id}`)
@@ -40,6 +42,7 @@ export class ListService {
     return this.http.get<Devs[]>(`${this.apiURL}${dev.name}${dev.age}`)
 
   }
+
 
 
 }
