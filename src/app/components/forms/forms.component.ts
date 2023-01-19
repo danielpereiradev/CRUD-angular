@@ -24,27 +24,34 @@ export class FormsComponent implements OnInit {
     private service: ListService,
     private toast: ToastrService,
     private route: ActivatedRoute,
-    private location: Location) {
+    private location: Location,
+    ) {
 
-    this.form = this.formBuilder.group({
-      name: [null],
-      // age: [null],
-      email: [null],
-      id: [null]
-    })
+    // this.form = this.formBuilder.group({
+    //   name: [null],
+    //   // age: [null],
+    //   email: [null],
+    //   id: [null]
+    // })
 
   }
 
   ngOnInit(): void {
+
     this.route.params.subscribe(
       (params: any) => {
         const id = params['id']
-
         const dev$ = this.service.getItem(id)
         dev$.subscribe(dev => {
           this.updateForms(dev)
-
         })
+      })
+
+      this.form = this.formBuilder.group({
+        name: [null],
+        // age: [null],
+        email: [null],
+        id: [null]
       })
 
 
@@ -52,13 +59,16 @@ export class FormsComponent implements OnInit {
   }
   onSubmit() {
     console.log(this.form.status)
-    if (this.form.status != "VALID") {
+    if (this.form.status != "VALID" ) {
       this.showErro()
-    } else {
+
+    }else{
       this.showSuccess()
+      this.service.save(this.form.value)
+
     }
 
-    this.service.save(this.form.value)
+
     this.location.back()
   }
   showSuccess() {
