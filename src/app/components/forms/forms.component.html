@@ -12,21 +12,17 @@
     Um simples alerta success. Olha só!
   </div> -->
 
-    <form [formGroup]="form" >
+    <form [formGroup]="form">
 
 
       <div class="forms-gruop">
         <label for="createDev">Nome</label>
         <input type="text" class="form-control" formControlName="name" placeholder="Digite seu nome"
-        required="name != null ">
+          required="name != null ">
         <!-- <div *ngIf="name.invalid && formDir.submitted"class="validation-error">
           <p>O nome é <strong>Obrigatorio</strong></p>
         </div> -->
-
-
         <small id="emailHelp" class="forms-txt  text-muted"></small>
-
-
       </div>
 
       <!-- <div class="forms-gruop">
@@ -38,28 +34,20 @@
 
 
       </div > -->
-        <label>Email</label>
-        <input type="email" class="form-control"  formControlName="email" placeholder="Digite seu email"
+      <label>Email</label>
+      <input type="email" class="form-control" formControlName="email" placeholder="Digite seu email"
         required="email != null">
-     <div>
 
+        <div>
 
-
-     </div>
+      </div>
 
 
 
       <button type="submit" class="btn btn-primary" (click)="onSubmit()">Salvar
-
-
-
       </button>
-      <button  type="submit" class="btn btn-danger" >
-      <a id="cancel"routerLink="/">Cancelar</a>
-
-
-
-
+      <button type="submit" class="btn btn-danger" (click)="onCancel()">Cancelar
+        <!-- <a id="cancel" routerLink="/">Cancelar</a> -->
       </button>
     </form>
 
@@ -69,6 +57,3 @@
 
   </div>
 </div>
-
-
-

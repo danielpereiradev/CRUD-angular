@@ -25,7 +25,7 @@ export class ListService {
    }
 
     getItem(id:number):Observable<Devs>{
-    return this.http.get<Devs>(`${this.apiURL}${id}`)
+    return this.http.get<Devs>(`${this.apiURL}/${id}`)
 
    }
 
@@ -34,8 +34,7 @@ export class ListService {
   }
 
   update(dev:Devs){
-    return this.http.put(this.apiURL,dev)
-
+    return this.http.put(`${this.apiURL}/${dev.id}`, dev)
   }
   listDevs(dev:Devs){
 

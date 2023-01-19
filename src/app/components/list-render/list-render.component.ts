@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Devs } from '../Devs';
 import { ListService } from 'src/app/service/list.service';
-import { Routes } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-list-render',
@@ -16,7 +16,7 @@ export class ListRenderComponent implements OnInit {
   @Output() update= new EventEmitter(false)
 
 
-constructor(private listService:ListService){
+constructor(private listService:ListService,  private router:Router, private route:ActivatedRoute){
   this.getDevs()
 }
 
@@ -41,17 +41,21 @@ getDevs():void{
   this.listService.getAll().subscribe((devs)=> (this.devs = devs))
 
 }
-updateDev(dev:Devs){
-  console.log("Update!!!!!!!!!!!")
-  this.update.emit(dev)
-}
-filtroDev(e:Event,dev:Devs,route:Routes):void{
-  const target =e.target as  HTMLInputElement
-  const value =  target.value
+updateDev(id:number){
+  this.router.navigate(['editar',id], {relativeTo:this.route})
 
-  this.dev=this.devs.filter(d=>{
-   return d.name.toLowerCase().includes(value)
-  })
+
+}
+
+
+
+// filtroDev(e:Event,dev:Devs,route:Routes):void{
+//   const target =e.target as  HTMLInputElement
+//   const value =  target.value
+
+//   this.dev=this.devs.filter(d=>{
+//    return d.name.toLowerCase().includes(value)
+//   })
   // this.devs = this.devs.filter( (n) => dev.name  !==  n.name).filter((a) => dev.age !== a.age )
   // this.listService.listDevs(dev).subscribe
 
@@ -60,5 +64,5 @@ filtroDev(e:Event,dev:Devs,route:Routes):void{
 
 
 
-}
+
 

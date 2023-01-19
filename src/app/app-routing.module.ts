@@ -15,14 +15,14 @@ import { TelaEdtarComponent } from './components/tela-edtar/tela-edtar.component
 
 
 const routes:Routes= [
-  {path:'',component:FistComponentComponent},
-  {path: 'list', component:ListRenderComponent},
-  {path:'list/:name',component:ListRenderComponent},
+  {path:'',component:ListRenderComponent},
+  {path:'list',component:ListRenderComponent},
   {path: 'updade/:id', component:ItemDetailComponent},
   {path:'eventos',component:EventosComponent},
   {path:'if',component:IfRenderComponent},
   {path:'forms',component:FormsComponent},
-  {path:"edtar", component:TelaEdtarComponent}
+  {path:'tela-edtar', component:TelaEdtarComponent},
+  {path:"editar/:id",component:FormsComponent}
 
 ]
 

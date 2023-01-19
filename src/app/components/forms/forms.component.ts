@@ -1,12 +1,13 @@
 import { HttpClient } from '@angular/common/http';
-import { Routes } from '@angular/router';
+import { Routes, ActivatedRoute } from '@angular/router';
 import { ListService } from './../../service/list.service';
 import { Component, ErrorHandler, OnInit } from '@angular/core';
-import { ControlContainer, FormBuilder, FormControl, FormGroup, RadioControlValueAccessor, Validator, Validators} from '@angular/forms';
+import { ControlContainer, FormBuilder, FormControl, FormGroup, RadioControlValueAccessor, Validator, Validators } from '@angular/forms';
 import { config, from } from 'rxjs';
 import { DeclareVarStmt } from '@angular/compiler';
 import { Devs } from '../Devs';
 import { ToastrService } from 'ngx-toastr';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-forms',
@@ -16,61 +17,68 @@ import { ToastrService } from 'ngx-toastr';
 export class FormsComponent implements OnInit {
 
   form!: FormGroup;
-devs:Devs[]=[]
+  // devs:Devs[]=[]
 
-  constructor(private formBuilder: FormBuilder, private service: ListService,private toast:ToastrService,) {
-
+  constructor(
+    private formBuilder: FormBuilder,
+    private service: ListService,
+    private toast: ToastrService,
+    private route: ActivatedRoute,
+    private location: Location) {
 
     this.form = this.formBuilder.group({
       name: [null],
-      age: [null],
-      email:[null]
+      // age: [null],
+      email: [null],
+      id: [null]
     })
 
   }
 
   ngOnInit(): void {
+    this.route.params.subscribe(
+      (params: any) => {
+        const id = params['id']
+
+        const dev$ = this.service.getItem(id)
+        dev$.subscribe(dev => {
+          this.updateForms(dev)
+
+        })
+      })
+
+
     this.form.value
-    }
-
-  //   this.form = new FormGroup({
-  //     name:new FormControl("",[ Validators.required]),
-  //     age:new FormControl("", Validators.required),
-
-  //   });
-  // }
-
-  // get name(){
-  //   return this.form.get('name')!
-  // }
-
-
-  // get age(){
-  //   return this.form.get('age')!
-  // }
+  }
   onSubmit() {
-    console.log(this.form.status )
-    if(this.form.status != "VALID"){
+    console.log(this.form.status)
+    if (this.form.status != "VALID") {
       this.showErro()
-    }else{
+    } else {
       this.showSuccess()
     }
 
     this.service.save(this.form.value)
-
-
+    this.location.back()
   }
-  showSuccess(){
+  showSuccess() {
     this.toast.success("Salvo !!!!")
   }
 
-
-  showErro(){
+  showErro() {
     this.toast.error("Ocorreu um erro")
   }
 
+  onCancel() {
+    this.form.reset();
+  }
 
+  updateForms(dev: Devs) {
+    this.form.patchValue({
+      name: dev.name,
+      email: dev.email
+    })
 
-
+  }
 
 }
