@@ -62,8 +62,25 @@ export class FormsComponent implements OnInit {
     if (this.form.status != "VALID" ) {
       this.showErro()
 
+      
+    
+      if(this.form.value.id){
+       this.service.update(this.form.value).subscribe(
+         susseco => {
+           this.toast.success("Modificado com Sucesso")
+            this.location.back()
+          },
+          error => {
+            this.toast.error("Ocorreu um erro ao Editar");
+            this.location.back()
+            
+          }
+       ) 
+
+      console.log("update")
+      }
+
     }else{
-      this.showSuccess()
       this.service.save(this.form.value)
 
     }
