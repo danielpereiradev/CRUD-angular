@@ -25,7 +25,7 @@ export class FormsComponent implements OnInit {
     private toast: ToastrService,
     private route: ActivatedRoute,
     private location: Location,
-    ) {
+  ) {
 
     // this.form = this.formBuilder.group({
     //   name: [null],
@@ -47,47 +47,53 @@ export class FormsComponent implements OnInit {
         })
       })
 
-      this.form = this.formBuilder.group({
-        name: [null],
-        // age: [null],
-        email: [null],
-        id: [null]
-      })
+    this.form = this.formBuilder.group({
+      name: [null],
+      // age: [null],
+      email: [null],
+      id: [null]
+    })
 
 
     this.form.value
   }
+
+
+
+
   onSubmit() {
-    console.log(this.form.status)
-    if (this.form.status != "VALID" ) {
-      this.showErro()
-
-      
-    
-      if(this.form.value.id){
-       this.service.update(this.form.value).subscribe(
-         susseco => {
-           this.toast.success("Modificado com Sucesso")
-            this.location.back()
-          },
-          error => {
-            this.toast.error("Ocorreu um erro ao Editar");
-            this.location.back()
-            
-          }
-       ) 
-
-      console.log("update")
-      }
-
-    }else{
+    console.log(this.form.value)
+    if (this.form.value.id) {
+      this.service.update(this.form.value).subscribe(
+        sucess => {
+          this.toast.success("Update !!!")
+        },
+        err => {
+          this.toast.error("Erro Update")
+        })
+    }else if(this.form.value) {
       this.service.save(this.form.value)
+      this.showSuccess()
 
     }
 
 
+    // if(this.form.value.id){
+    //   this.service.update(this.form.value).subscribe( () =>
+    //     this.toast.success("Update ! OK"),
+    //   ),
+    //   ()=>{
+
+    //     this.toast.error("ERRO ao editar")
+    //   }
+    // }else{
+
+    //}
     this.location.back()
   }
+
+
+
   showSuccess() {
     this.toast.success("Salvo !!!!")
   }
@@ -102,6 +108,7 @@ export class FormsComponent implements OnInit {
 
   updateForms(dev: Devs) {
     this.form.patchValue({
+      id: dev.id,
       name: dev.name,
       email: dev.email
     })
