@@ -47,9 +47,11 @@ import { TelaEdtarComponent } from './components/tela-edtar/tela-edtar.component
     ReactiveFormsModule,
     BrowserAnimationsModule,
 
+
     ToastrModule.forRoot({
 
     }),
+
 
 
 

@@ -62,12 +62,18 @@ padding: 5px;
   position: relative;
 }
 .btn-light, #busca{
-  border-radius: 50px;
+  border-radius: 200px;
   background: none;
   border:none;
   color:black;
   top:8px;
   left: 8px;
+
+}
+.bi-search{
+  border-radius: 200px;
+  margin-left: 1000px;
+
 
 }
 
