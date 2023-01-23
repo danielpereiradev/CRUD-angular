@@ -47,11 +47,16 @@ export class FormsComponent implements OnInit {
         })
       })
 
+
+
     this.form = this.formBuilder.group({
+
+
+      id: new FormControl(),
       name: [null],
-      // age: [null],
+      age: [null],
       email: [null],
-      id: [null]
+
     })
 
 
@@ -63,19 +68,24 @@ export class FormsComponent implements OnInit {
 
   onSubmit() {
     console.log(this.form.value)
-    if (this.form.value.id) {
-      this.service.update(this.form.value).subscribe(
-        sucess => {
-          this.toast.success("Update !!!")
-        },
-        err => {
-          this.toast.error("Erro Update")
-        })
-    }else if(this.form.value) {
-      this.service.save(this.form.value)
-      this.showSuccess()
+    this.service.create(this.form.value).subscribe( result => this.showSuccess(), erro => this.showErro( ))
 
-    }
+      if(this.form.status != "VALID"){
+        this.showErro()
+      }
+
+
+
+    // if (this.form.value.id) {
+    //   this.service.create(this.form.value).subscribe(
+    //     sucess => {
+    //       this.toast.success("Update !!!")
+    //     },
+    //     err => {
+    //       this.toast.error("Erro Update")
+    //     })
+    //   }
+
 
 
     // if(this.form.value.id){
@@ -95,22 +105,28 @@ export class FormsComponent implements OnInit {
 
 
   showSuccess() {
-    this.toast.success("Salvo !!!!")
+      this.toast.success("Salvo !!!!")
+
+
   }
 
   showErro() {
-    this.toast.error("Ocorreu um erro")
+      this.toast.error("Error ")
+
+
   }
 
   onCancel() {
     this.form.reset();
+    this.location.back()
   }
 
   updateForms(dev: Devs) {
     this.form.patchValue({
       id: dev.id,
       name: dev.name,
-      email: dev.email
+      email: dev.email,
+      age:dev.age
     })
 
   }

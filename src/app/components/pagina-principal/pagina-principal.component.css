@@ -4,12 +4,12 @@
 
 
 
-}
-body{
 
 }
-#cabecario{
-  width: 100%;
+
+.col{
+ border-bottom: solid 3px black;
+ background-color: rgba(0, 0, 0, 0.218);
 
 
 }
@@ -24,7 +24,7 @@ li a{
   /* border: solid rgb(94, 137, 89) 1px; */
 
 }
-.menu{
+/* .menu{
   list-style-type: none ;
   display:flex;
   justify-content: space-around;
@@ -37,19 +37,4 @@ li a{
 
 
 }
-
-li a:hover{
-  color:blue;
-  background-color: rgba(240, 248, 255, 0.219);
-
-}
-
-.imagem {
-width: 80px;
-height: 80px;
-margin-right: 0.6em;
-display: inline-block;
-}
-.titulo{
-  display: inline-block;
-}
+ */

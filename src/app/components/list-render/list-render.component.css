@@ -39,15 +39,18 @@ li{
 
 }
 .btn-light, #delete:hover{
-color:rgba(235, 92, 92, 0.894)
+color:rgba(204, 0, 0, 0.894)
 }
 
 .form-control{
 display: flex;
-justify-content: flex-end;  
+justify-content: flex-end;
 align-items: flex-end;
 width: 200px;
 border-radius: 40px;
+margin-left: 800px;
+padding: 5px;
+
 
 
 }
@@ -55,10 +58,46 @@ border-radius: 40px;
 .busca{
   display: flex;
   justify-items: center;
+  width: 30%;
+  position: relative;
 }
 .btn-light, #busca{
   border-radius: 50px;
   background: none;
   border:none;
-  color:black
+  color:black;
+  top:8px;
+  left: 8px;
+
+}
+
+.busca{
+  padding: 0.5em;
+  width: 100%;
+  text-align: center;
+}
+/* .form-control{
+  display: flex;
+  align-items: center;
+  position:relative;
+  margin-left: 800px;
+  height: 40px;
+
+
+
+} */
+
+#salve {
+  color:#fff ;
+  align-items: flex-end;
+  margin-left: 1100px;
+
+
+}
+.bi-plus-circle{
+
+  font-size:5em;
+}
+.items{
+  display: inline;
 }

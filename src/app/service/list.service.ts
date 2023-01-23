@@ -27,20 +27,29 @@ export class ListService {
     return this.http.get<Devs>(`${this.apiURL}/${id}`)
 
   }
+    create(dev: Partial<Devs>){
+      console.log(dev)
+      if(dev.id){
+        console.log("update")
+        return this.update(dev)
 
-  save(dev: Devs) {
+      }else{
+        console.log("Seved ")
+        return this.save(dev)
+      }
+
+    }
+
+ private  save(dev: Partial<Devs>) {
     return this.http.post<Devs>(this.apiURL, dev)
   }
 
-  update(dev: Devs) {
-    return this.http.put<Devs>(`${this.apiURL}/${dev.id}`, dev)
-
-
+ private  update(dev: Partial<Devs>) {
+    return this.http.put(`${this.apiURL}/atulizar/devs/${dev.id}`, dev)
   }
+
   listDevs(dev: Devs) {
-
-    return this.http.get<Devs[]>(`${this.apiURL}/${dev.name}/${dev.age}`)
-
+    return this.http.get<Devs[]>(`${this.apiURL}/list.json${dev.name}/${dev.age}`)
   }
 
 

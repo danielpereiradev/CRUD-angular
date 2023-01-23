@@ -65,7 +65,7 @@ ngOnInit(): void {
     this.showSuccess()
   }
 
-  this.service.update(this.form.value.id)
+  this.service.create(this.form.value.id)
 
 }
 
