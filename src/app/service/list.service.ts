@@ -12,6 +12,8 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class ListService {
   private apiURL = "/api/developer"
+  total?:number
+
 
   constructor(private http: HttpClient, private toast: ToastrService) { }
 
@@ -49,7 +51,9 @@ export class ListService {
   }
 
   listDevs(dev: Devs) {
-    return this.http.get<Devs[]>(`${this.apiURL}/list.json${dev.name}/${dev.age}`)
+    return this.http.get<Devs[]>(`${this.apiURL}/list.json?name=${dev.name}`)
+
+
   }
 
 
