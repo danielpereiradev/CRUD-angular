@@ -6,6 +6,7 @@ import { Devs } from '../Devs';
 import { ListService } from 'src/app/service/list.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ThisReceiver } from '@angular/compiler';
+import { __param } from 'tslib';
 
 @Component({
   selector: 'app-list-render',
@@ -16,7 +17,7 @@ export class ListRenderComponent implements OnInit {
 
   form!: FormGroup
 
-  searhText: any = "";
+  searhText: any = ""
   private apiURL = "/api/developer"
    fields:string = "name,age,email"
 
@@ -31,6 +32,8 @@ export class ListRenderComponent implements OnInit {
   queryField = new FormControl();
   result$?:Observable<any>
 
+  total?:number
+
 
   constructor(
     private listService: ListService,
@@ -44,30 +47,23 @@ export class ListRenderComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    // this.form = this.formBuilder.group({
-    //   name: new FormControl(null),
-    //   age: new FormControl(null),
-    //   email: new FormControl(null)
 
-    // })
-
-      this.queryField.valueChanges
 
     this.result$ = this.queryField.valueChanges.pipe(
     map((value:any)=> value.trim()),
     filter((value:any)=> value.length > 1),
     debounceTime(200),
-    distinctUntilChanged(),
-    //tap((value:any) => console.log(value)),
-    switchMap(value => this.http.get(this.apiURL,{
+    tap((value:any) => console.log(value)),
+    switchMap(value => this.http.get(`${this.apiURL}/find.json`,{
       params:{
-        search: value,
-        fields:this.fields
+        name:value,
       }
     })),
-    map((res:any)=>( res= this.result$))
-  );
 
+
+    tap((res:any) => this.total = res.total),
+    map((res:any)=>( res= this.result$))
+  )
 
   }
 
@@ -119,17 +115,25 @@ export class ListRenderComponent implements OnInit {
     if(value &&  (value =value.trim()) !== "" ){
       value = value.trim( )
     const params_ ={
-      search:value,
+      name:value,
+      age:value,
+      email:value
     }
 
     let params__ = new HttpParams()
-  params__ = params__.set('search', value)
-  // params__ = params__.set('fields', fields)
-
-
+    params__ = params__.set('name', value)
+    params__ = params__.set('age', value)
+    params__ = params__.set('emial', value)
     }
 
-    this.result$ = this.listService.listDevs(this.queryField.value + value)
+
+
+    this.result$ = this.http.get(`${this.apiURL}/find.json?name=${value}`, this.queryField.value + value)
+
+
+    // this.result$ = this.http.get(`${this.apiURL} ${this.queryField.value + value}`)
+
+
 
   }
 }

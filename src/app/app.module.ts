@@ -38,6 +38,7 @@ import { TelaEdtarComponent } from './components/tela-edtar/tela-edtar.component
     PaginaPrincipalComponent,
     BuscaDevComponent,
     TelaEdtarComponent,
+
   ],
   imports: [
     BrowserModule,

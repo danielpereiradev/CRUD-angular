@@ -16,7 +16,7 @@ import { TelaEdtarComponent } from './components/tela-edtar/tela-edtar.component
 
 const routes:Routes= [
   {path:'',component:ListRenderComponent},
-  // {path:'list',component:ListRenderComponent},
+  {path:'list',component:ListRenderComponent},
   {path: 'updade/:id', component:ItemDetailComponent},
   {path:'eventos',component:EventosComponent},
   {path:'if',component:IfRenderComponent},

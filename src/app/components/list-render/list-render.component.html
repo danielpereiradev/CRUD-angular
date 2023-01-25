@@ -1,3 +1,6 @@
+
+<div>
+
 <div class="items">
   <a routerLink="/forms"><button type="button" class="btn btn-primary" id="salve">Adicionar
       <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-circle-fill"
@@ -7,28 +10,22 @@
       </svg>
     </button></a>
 
+
 </div>
 
-    <form >
+   <form >
       <label for="busca"></label>
     <div class="col-md-5" >
-      <input type="text" class="form-control"  [formControl]="queryField">
 
+      <input type="text" class="form-control"  [formControl]="queryField" (input)="onSearch()">
+      <button class="btn btn-success" id="busca"  (click)="onSearch()">
+        Pesquisar
+      </button>
 
-
-
-      <button class="btn btn-light" id="busca"  (click)="onSearch()" >
-      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search"
-        viewBox="0 0 16 16">
-        <path
-          d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
-      </svg>
-    </button>
       </div>
   </form>
 
-
-
+</div>
 <table class="table">
   <thead>
     <tr>
@@ -39,7 +36,7 @@
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let dev of  devs">
+    <tr *ngFor="let dev of  result$ | async">
       <th scope="row"></th>
       <td>{{dev.name}}</td>
       <td>{{dev.email}}</td>
@@ -66,8 +63,7 @@
             d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0z" />
         </svg>
       </button>
-
-
     </tr>
   </tbody>
 </table>
+

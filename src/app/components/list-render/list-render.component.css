@@ -38,7 +38,7 @@ li{
   border-radius: 1px;
 
 }
-.btn-light, #delete:hover{
+ #delete:hover{
 color:rgba(204, 0, 0, 0.894)
 }
 
@@ -62,13 +62,12 @@ margin-left: 300px;
   width: 30%;
   position: relative;
 }
-.btn-light, #busca{
+.btn-success, #busca{
 
-  background: none;
+  display: inline-block;
   border:none;
   color:black;
-  top:8px;
-  left: 8px;
+
 
 }
 
@@ -81,7 +80,6 @@ margin-left: 300px;
   border-radius: 200px;
   margin-left: 1000px;
   display: inline-block;
-  background-color: red;
   text-align: center;
 
 

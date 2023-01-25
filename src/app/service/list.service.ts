@@ -25,6 +25,11 @@ export class ListService {
 
   }
 
+  findDev(): Observable<Devs[]> {
+    return this.http.get<Devs[]>(`${this.apiURL}/find.json?name`)
+
+  }
+
   getItem(id: number): Observable<Devs> {
     return this.http.get<Devs>(`${this.apiURL}/${id}`)
 
@@ -51,7 +56,7 @@ export class ListService {
   }
 
   listDevs(dev: Devs) {
-    return this.http.get<Devs[]>(`${this.apiURL}/list.json?name=${dev.name}`)
+    return this.http.get<Devs[]>(`${this.apiURL}/find.json?name=${dev.name}`)
 
 
   }
