@@ -1,5 +1,5 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
-import { map, Observable, tap, filter, distinctUntilChanged, debounceTime,switchMap } from 'rxjs';
+import { map, Observable, tap, filter, distinctUntilChanged, debounceTime, switchMap } from 'rxjs';
 import { FormBuilder, FormGroup, FormControl } from '@angular/forms';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Devs } from '../Devs';
@@ -18,8 +18,8 @@ export class ListRenderComponent implements OnInit {
   form!: FormGroup
 
   searhText: any = ""
-  private apiURL = "/api/developer"
-   fields:string = "name,age,email"
+  private apiUrl = "/api/developer/find.json?"
+  fields: string = "name,age,email"
 
 
 
@@ -30,9 +30,9 @@ export class ListRenderComponent implements OnInit {
 
 
   queryField = new FormControl();
-  result$?:Observable<any>
+  result$?: Observable<any>
 
-  total?:number
+  total?: number
 
 
   constructor(
@@ -40,8 +40,8 @@ export class ListRenderComponent implements OnInit {
     private router: Router,
     private route: ActivatedRoute,
     private formBuilder: FormBuilder,
-    private http:HttpClient
-    ) {
+    private http: HttpClient
+  ) {
 
     this.getDevs()
   }
@@ -50,20 +50,20 @@ export class ListRenderComponent implements OnInit {
 
 
     this.result$ = this.queryField.valueChanges.pipe(
-    map((value:any)=> value.trim()),
-    filter((value:any)=> value.length > 1),
-    debounceTime(200),
-    tap((value:any) => console.log(value)),
-    switchMap(value => this.http.get(`${this.apiURL}/find.json`,{
-      params:{
-        name:value,
-      }
-    })),
+      map((value: any) => value.trim()),
+      filter((value: any) => value.length > 1),
+      debounceTime(200),
+      tap((value: any) => console.log(value)),
+      switchMap(value => this.http.get(`${this.apiUrl}/find.json`, {
+        params: {
+          name: value,
+        }
+      })),
 
 
-    tap((res:any) => this.total = res.total),
-    map((res:any)=>( res= this.result$))
-  )
+      tap((res: any) => this.total = res.total),
+      map((res: any) => (res = this.result$))
+    )
 
   }
 
@@ -102,7 +102,7 @@ export class ListRenderComponent implements OnInit {
 
   }
 
-    onSearch(){
+  onSearch() {
     console.log(this.queryField.value)
 
 
@@ -112,26 +112,27 @@ export class ListRenderComponent implements OnInit {
 
 
 
-    if(value &&  (value =value.trim()) !== "" ){
-      value = value.trim( )
-    const params_ ={
-      name:value,
-      age:value,
-      email:value
+    if (value && (value = value.trim()) !== "") {
+      value = value.trim()
+      // const params_ ={
+      //   name:value,
+      //   age:value,
+      //   email:value
+      // }
+
+      let params__ = new HttpParams()
+      params__ = params__.set('name', value)
+      params__ = params__.set('age', value)
+      params__ = params__.set('emial', value)
     }
 
-    let params__ = new HttpParams()
-    params__ = params__.set('name', value)
-    params__ = params__.set('age', value)
-    params__ = params__.set('emial', value)
-    }
+
+
+    this.result$ = this.http.get(`${this.apiUrl}name=${value}`, this.queryField.value + value)
 
 
 
-    this.result$ = this.http.get(`${this.apiURL}/find.json?name=${value}`, this.queryField.value + value)
-
-
-    // this.result$ = this.http.get(`${this.apiURL} ${this.queryField.value + value}`)
+    // this.result$ = this.http.get(`${this.apiUrl} ${this.queryField.value + value}`)
 
 
 
