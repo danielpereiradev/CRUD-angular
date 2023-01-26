@@ -22,7 +22,8 @@ const routes:Routes= [
   {path:'if',component:IfRenderComponent},
   {path:'forms',component:FormsComponent},
   {path:'tela-edtar', component:TelaEdtarComponent},
-  {path:"editar/:id",component:FormsComponent}
+  {path:"editar/:id",component:FormsComponent},
+
 
 ]
 

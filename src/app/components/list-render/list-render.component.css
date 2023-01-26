@@ -72,15 +72,12 @@ margin-left: 300px;
 }
 
 
-#busca{
 
-  display: inline-block;
+.bi-search {
+position: relative;
 }
-.bi-search{
-  border-radius: 200px;
-  margin-left: 1000px;
-  display: inline-block;
-  text-align: center;
+
+#pesquisa{
 
 
 }

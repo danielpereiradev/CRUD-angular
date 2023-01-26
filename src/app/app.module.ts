@@ -22,6 +22,7 @@ import { FormsComponent } from './components/forms/forms.component';
 import { PaginaPrincipalComponent } from './components/pagina-principal/pagina-principal.component';
 import { BuscaDevComponent } from './components/busca-dev/busca-dev.component';
 import { TelaEdtarComponent } from './components/tela-edtar/tela-edtar.component';
+import { FilterPipe } from './pipes/filter.pipe';
 
 @NgModule({
   declarations: [
@@ -38,6 +39,8 @@ import { TelaEdtarComponent } from './components/tela-edtar/tela-edtar.component
     PaginaPrincipalComponent,
     BuscaDevComponent,
     TelaEdtarComponent,
+    FilterPipe,
+
 
   ],
   imports: [

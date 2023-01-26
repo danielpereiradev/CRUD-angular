@@ -18,6 +18,7 @@ export class ListRenderComponent implements OnInit {
   form!: FormGroup
 
   searhText: any = ""
+  private apiURL = "/api/developer"
   private apiUrl = "/api/developer/find.json?"
   fields: string = "name,age,email"
 
@@ -25,12 +26,12 @@ export class ListRenderComponent implements OnInit {
 
 
 
-  @Input() dev: Devs[] = []
+  @Input() dev:  Devs[] = []
   @Output() update = new EventEmitter(false)
 
 
   queryField = new FormControl();
-  result$?: Observable<any>
+  @Input() result$?: Observable<any>
 
   total?: number
 
@@ -54,7 +55,7 @@ export class ListRenderComponent implements OnInit {
       filter((value: any) => value.length > 1),
       debounceTime(200),
       tap((value: any) => console.log(value)),
-      switchMap(value => this.http.get(`${this.apiUrl}/find.json`, {
+      switchMap(value => this.http.get(`${this.apiUrl}`, {
         params: {
           name: value,
         }
@@ -95,48 +96,26 @@ export class ListRenderComponent implements OnInit {
   filtroDev(): void {
     this.listService.listDevs(this.form.value);
 
-    // const target =e.target as  HTMLInpform
-    //  return d.name.toLowerCase().includes(value)
-    // })
-    // this.devs = this.devs.filter( (n) => dev.name  !==  n.name).filter((a) => dev.age !== a.age )
-
   }
 
-  onSearch() {
-    console.log(this.queryField.value)
-
-
+  onSearch(e:Event):void {
 
 
     let value = this.queryField.value
 
-
-
     if (value && (value = value.trim()) !== "") {
       value = value.trim()
-      // const params_ ={
-      //   name:value,
-      //   age:value,
-      //   email:value
-      // }
-
       let params__ = new HttpParams()
       params__ = params__.set('name', value)
       params__ = params__.set('age', value)
       params__ = params__.set('emial', value)
     }
 
-
-
-    this.result$ = this.http.get(`${this.apiUrl}name=${value}`, this.queryField.value + value)
-
-
-
-    // this.result$ = this.http.get(`${this.apiUrl} ${this.queryField.value + value}`)
-
-
+    this.apiURL
+      this.result$ = this.http.get(`${this.apiUrl}name=${value}`, this.queryField.value + value)
 
   }
+
 }
 
 
