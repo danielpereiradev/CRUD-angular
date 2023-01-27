@@ -5,6 +5,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable, observable, take } from 'rxjs';
 import { ReturnStatement } from '@angular/compiler';
 import { ToastrService } from 'ngx-toastr';
+import { ParamMap } from '@angular/router';
 
 
 @Injectable({
@@ -12,7 +13,7 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class ListService {
   private apiURL = "/api/developer"
-  total?:number
+  total?: number
 
 
   constructor(private http: HttpClient, private toast: ToastrService) { }
@@ -34,24 +35,24 @@ export class ListService {
     return this.http.get<Devs>(`${this.apiURL}/${id}`)
 
   }
-    create(dev: Partial<Devs>){
-      console.log(dev)
-      if(dev.id){
-        console.log("update")
-        return this.update(dev)
+  create(dev: Partial<Devs>) {
+    console.log(dev)
+    if (dev.id) {
+      console.log("update")
+      return this.update(dev)
 
-      }else{
-        console.log("Seved ")
-        return this.save(dev)
-      }
-
+    } else {
+      console.log("Seved ")
+      return this.save(dev)
     }
 
- private  save(dev: Partial<Devs>) {
+  }
+
+  private save(dev: Partial<Devs>) {
     return this.http.post<Devs>(this.apiURL, dev)
   }
 
- private  update(dev: Partial<Devs>) {
+  private update(dev: Partial<Devs>) {
     return this.http.put(`${this.apiURL}/atulizar/devs/${dev.id}`, dev)
   }
 
@@ -59,6 +60,10 @@ export class ListService {
     return this.http.get<Devs[]>(`${this.apiURL}/find.json?name=${dev.name}`)
 
 
+  }
+
+  pageDevs(){
+      return this.http.get<Devs[]>(`${this.apiURL}/page.json?size=5`)
   }
 
 

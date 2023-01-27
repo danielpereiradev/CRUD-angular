@@ -18,8 +18,8 @@ export class ListRenderComponent implements OnInit {
   form!: FormGroup
 
   searhText: any = ""
+  // private apiURL = "/api/developer"
   private apiURL = "/api/developer"
-  private apiUrl = "/api/developer/find.json?"
   fields: string = "name,age,email"
 
 
@@ -31,7 +31,9 @@ export class ListRenderComponent implements OnInit {
 
 
   queryField = new FormControl();
-  @Input() result$?: Observable<any>
+  @Input()
+  result$!: Observable<any>;
+  @Input() result?: Observable<any>
 
   total?: number
 
@@ -51,13 +53,15 @@ export class ListRenderComponent implements OnInit {
 
 
     this.result$ = this.queryField.valueChanges.pipe(
-      map((value: any) => value.trim()),
-      filter((value: any) => value.length > 1),
+
+      map((value: string ) => value.trimEnd()),
+      filter((value: string) => value.length > 1),
       debounceTime(200),
       tap((value: any) => console.log(value)),
-      switchMap(value => this.http.get(`${this.apiUrl}`, {
+      switchMap(value => this.http.get(`${this.apiURL}`, {
         params: {
           name: value,
+
         }
       })),
 
@@ -65,6 +69,8 @@ export class ListRenderComponent implements OnInit {
       tap((res: any) => this.total = res.total),
       map((res: any) => (res = this.result$))
     )
+
+
 
   }
 
@@ -98,7 +104,7 @@ export class ListRenderComponent implements OnInit {
 
   }
 
-  onSearch(e:Event):void {
+  onSearch():void {
 
 
     let value = this.queryField.value
@@ -109,14 +115,26 @@ export class ListRenderComponent implements OnInit {
       params__ = params__.set('name', value)
       params__ = params__.set('age', value)
       params__ = params__.set('emial', value)
+
     }
 
-    this.apiURL
-      this.result$ = this.http.get(`${this.apiUrl}name=${value}`, this.queryField.value + value)
+
+
+  //   this.apiURL
+
+  this.result$ = this.http.get(`${this.apiURL}/find.json?name=${value}`, this.queryField.value + value)
+
+
+  // }
+
 
   }
 
-}
+  paginacao(){
+
+  }
+
+  }
 
 
 

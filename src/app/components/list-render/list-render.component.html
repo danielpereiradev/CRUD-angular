@@ -12,10 +12,11 @@
 
   </div>
 
-  <form>
+  <form >
     <label for="busca"></label>
     <div class="col-md-5">
-      <input type="text" class="form-control" id="pesquisa" [formControl]="queryField"  name="detalis" placeholder="Search" [(ngModel)]="detalis">
+      <input type="text" class="form-control" id="pesquisa" [formControl]="queryField" name="detalis"
+        placeholder="Search"  (input)="onSearch()">
 
     </div>
   </form>
@@ -32,12 +33,13 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let dev of devs | filter:detalis">
+      <tr *ngFor="let dev of  result$ | async ">
 
         <th scope="row"></th>
-        <td>{{dev.name}}</td>
-        <td>{{dev.email}}</td>
-        <td>{{dev.age}}</td>
+        <td>{{dev.name }}</td>
+        <td>{{dev.email }}</td>
+        <td>{{dev.age }}</td>
+
 
 
 
@@ -63,16 +65,18 @@
 
     </tbody>
   </table>
-  <div class="paginas">
 
-    <button>
-      <a routerLink="api/developer/page.json?size=5&page=2">1</a>
- </button>
- <button>
-     <a routerLink="">2</a>
- </button>
- <button>
-  <a routerLink="">3</a>
- </button>
+    <div class="paginas">
+      <button>
+        <a >1</a>
+      </button>
+      <button>
+        <a routerLink="">2</a>
+      </button>
+      <button>
+        <a routerLink="">3</a>
+      </button>
+    </div>
+
   </div>
-</div>
+
