@@ -71,7 +71,7 @@ export class ListRenderComponent implements OnInit {
 
   devs: Devs[] = []
 
-  detalis: string = ""
+  detalis  = ""
 
   showId(dev: Devs) {
     this.detalis = ` O Id de ${dev.name} é ${dev.id}`
