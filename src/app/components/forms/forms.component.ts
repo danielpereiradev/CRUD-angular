@@ -74,31 +74,6 @@ export class FormsComponent implements OnInit {
         this.showErro()
       }
 
-
-
-    // if (this.form.value.id) {
-    //   this.service.create(this.form.value).subscribe(
-    //     sucess => {
-    //       this.toast.success("Update !!!")
-    //     },
-    //     err => {
-    //       this.toast.error("Erro Update")
-    //     })
-    //   }
-
-
-
-    // if(this.form.value.id){
-    //   this.service.update(this.form.value).subscribe( () =>
-    //     this.toast.success("Update ! OK"),
-    //   ),
-    //   ()=>{
-
-    //     this.toast.error("ERRO ao editar")
-    //   }
-    // }else{
-
-    //}
     this.location.back()
   }
 

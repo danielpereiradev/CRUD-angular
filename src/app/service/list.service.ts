@@ -1,3 +1,4 @@
+import { Page } from './../components/Page';
 import { AppComponent } from './../app.component';
 import { Injectable } from '@angular/core';
 import { Devs } from '../components/Devs';
@@ -62,8 +63,8 @@ export class ListService {
 
   }
 
-  pageDevs(){
-      return this.http.get<Devs[]>(`${this.apiURL}/page.json?size=5`)
+  pageDevs(page:number, size:number){
+      return this.http.get<Devs[]>(`${this.apiURL}/page.json?page=${page}&size=${size}`)
   }
 
 

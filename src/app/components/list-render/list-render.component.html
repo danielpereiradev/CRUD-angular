@@ -15,8 +15,8 @@
   <form >
     <label for="busca"></label>
     <div class="col-md-5">
-      <input type="text" class="form-control" id="pesquisa" [formControl]="queryField" name="detalis"
-        placeholder="Search"  (input)="onSearch()">
+      <input type="text" class="form-control" id="pesquisa" [formControl]="queryField"  (input)="onSearch()"
+        placeholder="Search"  >
 
     </div>
   </form>
@@ -33,16 +33,12 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let dev of  result$ | async ">
+      <tr *ngFor="let dev of  result$| async ">
 
         <th scope="row"></th>
-        <td>{{dev.name }}</td>
-        <td>{{dev.email }}</td>
-        <td>{{dev.age }}</td>
-
-
-
-
+        <td>{{dev.name}}</td>
+        <td>{{dev.email}}</td>
+        <td>{{dev.age}}</td>
 
         <button class="btn btn-light" id="updateDev" (click)="updateDev(dev.id)">
           <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil"
@@ -64,19 +60,31 @@
     <tbody>
 
     </tbody>
-  </table>
+   </table>
 
-    <div class="paginas">
-      <button>
-        <a >1</a>
-      </button>
-      <button>
-        <a routerLink="">2</a>
-      </button>
-      <button>
-        <a routerLink="">3</a>
-      </button>
-    </div>
+
+   <nav aria-label="Navegação de página exemplo">
+    <ul class="pagination">
+      <li class="page-item">
+        <a class="page-link" href="#" aria-label="Anterior">
+          <span aria-hidden="true">&laquo;</span>
+          <span class="sr-only">Anterior</span>
+        </a>
+      </li>
+      <li class="page-item"><a class="page-link" href="#" >1</a></li>
+      <li class="page-item"><a class="page-link" href="#">2</a></li>
+      <li class="page-item"><a class="page-link" href="#">3</a></li>
+      <li class="page-item">
+        <a class="page-link" href="#" aria-label="Próximo"  >
+          <span aria-hidden="true"  (click)="paginacao(0,5)">&raquo;</span>
+          <span class="sr-only">Próximo</span>
+        </a>
+      </li>
+    </ul>
+  </nav>
+
+
+
 
   </div>
 

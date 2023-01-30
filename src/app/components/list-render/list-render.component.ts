@@ -7,6 +7,7 @@ import { ListService } from 'src/app/service/list.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ThisReceiver } from '@angular/compiler';
 import { __param } from 'tslib';
+import { Page } from '../Page';
 
 @Component({
   selector: 'app-list-render',
@@ -26,7 +27,7 @@ export class ListRenderComponent implements OnInit {
 
 
 
-  @Input() dev:  Devs[] = []
+  @Input() dev: Devs[] = []
   @Output() update = new EventEmitter(false)
 
 
@@ -44,6 +45,8 @@ export class ListRenderComponent implements OnInit {
     private route: ActivatedRoute,
     private formBuilder: FormBuilder,
     private http: HttpClient
+
+
   ) {
 
     this.getDevs()
@@ -51,14 +54,13 @@ export class ListRenderComponent implements OnInit {
 
   ngOnInit(): void {
 
-
     this.result$ = this.queryField.valueChanges.pipe(
 
-      map((value: string ) => value.trimEnd()),
+      map((value: string) => value.trimEnd()),
       filter((value: string) => value.length > 1),
       debounceTime(200),
       tap((value: any) => console.log(value)),
-      switchMap(value => this.http.get(`${this.apiURL}`, {
+      switchMap(value => this.http.get(`${this.apiURL}/find.json?`, {
         params: {
           name: value,
 
@@ -67,17 +69,16 @@ export class ListRenderComponent implements OnInit {
 
 
       tap((res: any) => this.total = res.total),
-      map((res: any) => (res = this.result$))
+      map((res: any) => res.result$)
     )
-
-
 
   }
 
 
+  page?: Page;
   devs: Devs[] = []
 
-  detalis  = ""
+  detalis = ""
 
   showId(dev: Devs) {
     this.detalis = ` O Id de ${dev.name} é ${dev.id}`
@@ -104,37 +105,28 @@ export class ListRenderComponent implements OnInit {
 
   }
 
-  onSearch():void {
+  onSearch(): void {
 
 
     let value = this.queryField.value
 
     if (value && (value = value.trim()) !== "") {
-      value = value.trim()
+
       let params__ = new HttpParams()
       params__ = params__.set('name', value)
       params__ = params__.set('age', value)
       params__ = params__.set('emial', value)
 
     }
-
-
-
-  //   this.apiURL
-
-  this.result$ = this.http.get(`${this.apiURL}/find.json?name=${value}`, this.queryField.value + value)
-
-
-  // }
-
-
+    this.result$ = this.http.get(`${this.apiURL}/find.json?name=${value}`, this.queryField.value + value)
   }
 
-  paginacao(){
-
+  paginacao(page: number, size: number) {
+    this.listService.pageDevs(page, size).subscribe(res => {
+    })
   }
 
-  }
+}
 
 
 
