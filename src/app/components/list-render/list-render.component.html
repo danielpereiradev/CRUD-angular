@@ -33,7 +33,7 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let dev of  result$| async ">
+      <tr *ngFor="let dev of devs ">
 
         <th scope="row"></th>
         <td>{{dev.name}}</td>
@@ -54,14 +54,14 @@
             viewBox="0 0 16 16">
             <path
               d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0z" />
-          </svg>
+        </svg>
         </button>
       </tr>
     <tbody>
 
     </tbody>
    </table>
-
+<!-- Criando  paginação -->
 
    <nav aria-label="Navegação de página exemplo">
     <ul class="pagination">
@@ -71,13 +71,14 @@
           <span class="sr-only">Anterior</span>
         </a>
       </li>
-      <li class="page-item"><a class="page-link" href="#" >1</a></li>
-      <li class="page-item"><a class="page-link" href="#">2</a></li>
-      <li class="page-item"><a class="page-link" href="#">3</a></li>
+      <li class="page-item"><a class="page-link" routerLink="">1</a></li>
+      <li class="page-item"><a class="page-link" routerLink="">2</a></li>
+      <li class="page-item"><a class="page-link" routerLink="">3</a></li>
       <li class="page-item">
         <a class="page-link" href="#" aria-label="Próximo"  >
-          <span aria-hidden="true"  (click)="paginacao(0,5)">&raquo;</span>
-          <span class="sr-only">Próximo</span>
+          <span aria-hidden="true"  >&raquo;</span>
+          <span class="sr-only" (click)="paginacao(0,5)">Próximo</span>
+
         </a>
       </li>
     </ul>
