@@ -33,7 +33,7 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let dev of devs ">
+      <tr *ngFor="let dev of result$ | async ">
 
         <th scope="row"></th>
         <td>{{dev.name}}</td>

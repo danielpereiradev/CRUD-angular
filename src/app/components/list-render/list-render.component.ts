@@ -94,11 +94,10 @@ export class ListRenderComponent implements OnInit {
 
   }
 
+
   updateDev(id: number) {
     this.router.navigate(['editar', id], { relativeTo: this.route })
   }
-
-
 
   filtroDev(): void {
     this.listService.listDevs(this.form.value);
@@ -118,15 +117,28 @@ export class ListRenderComponent implements OnInit {
       params__ = params__.set('emial', value)
 
     }
-    this.result$ = this.http.get(`${this.apiURL}/find.json?name=${value}`, this.queryField.value + value)
+      this.result$ = this.http.get(`${this.apiURL}/find.json?name=${value}`, this.queryField.value + value)
+
   }
 
-  paginacao(page: number, size: number) {
-    this.listService.pageDevs(page, size).subscribe(res => {
+  paginacao(page: number, size: number, ) {
+     this.listService.pageDevs(page, size).subscribe(res => {
     })
+ }
+
+  paginacaoD(){
+
   }
+
+
+
+
+
 
 }
+
+
+
 
 
 
