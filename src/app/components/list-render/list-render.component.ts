@@ -1,5 +1,5 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
-import { map, Observable, tap, filter, distinctUntilChanged, debounceTime, switchMap } from 'rxjs';
+import { map, Observable, tap, filter, distinctUntilChanged, debounceTime, switchMap, switchScan } from 'rxjs';
 import { FormBuilder, FormGroup, FormControl } from '@angular/forms';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Devs } from '../Devs';
@@ -8,6 +8,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { ThisReceiver } from '@angular/compiler';
 import { __param } from 'tslib';
 import { Page } from '../Page';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 @Component({
   selector: 'app-list-render',
@@ -35,6 +36,7 @@ export class ListRenderComponent implements OnInit {
   @Input()
   result$!: Observable<any>;
   @Input() result?: Observable<any>
+  paginaAtual = 1;
 
   total?: number
 
@@ -54,9 +56,11 @@ export class ListRenderComponent implements OnInit {
 
   ngOnInit(): void {
 
+
+
     this.result$ = this.queryField.valueChanges.pipe(
 
-      map((value: string) => value.trimEnd()),
+      map((value: string) => value.trim()),
       filter((value: string) => value.length > 1),
       debounceTime(200),
       tap((value: any) => console.log(value)),
@@ -67,10 +71,10 @@ export class ListRenderComponent implements OnInit {
         }
       })),
 
-
-      tap((res: any) => this.total = res.total),
       map((res: any) => res.result$)
     )
+
+
 
   }
 
@@ -109,26 +113,27 @@ export class ListRenderComponent implements OnInit {
 
     let value = this.queryField.value
 
-    if (value && (value = value.trim()) !== "") {
+    // if (value && (value = value.trim()) !== "") {
 
-      let params__ = new HttpParams()
-      params__ = params__.set('name', value)
-      params__ = params__.set('age', value)
-      params__ = params__.set('emial', value)
+    //   let params__ = new HttpParams()
+    //   params__ = params__.set('name', value)
+    //   params__ = params__.set('age', value)
+    //   params__ = params__.set('emial', value)
 
-    }
-      this.result$ = this.http.get(`${this.apiURL}/find.json?name=${value}`, this.queryField.value + value)
+    // }
+    this.result$ = this.http.get(`${this.apiURL}/find.json?name=${value}`, this.queryField.value + value)
 
   }
 
-  paginacao(page: number, size: number, ) {
-     this.listService.pageDevs(page, size).subscribe(res => {
+  paginacao(page: number, size: number,) {
+    this.listService.pageDevs(page, size).subscribe(res => {
     })
- }
-
-  paginacaoD(){
 
   }
+
+
+
+
 
 
 

@@ -4,6 +4,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
 import { ToastrModule, ToastrService, ToastrConfig } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { NgxPaginationModule } from 'ngx-pagination';
+
 
 
 
@@ -42,6 +44,7 @@ import { FilterPipe } from './pipes/filter.pipe';
     FilterPipe,
 
 
+
   ],
   imports: [
     BrowserModule,
@@ -50,6 +53,7 @@ import { FilterPipe } from './pipes/filter.pipe';
     HttpClientModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
+    NgxPaginationModule,
 
 
     ToastrModule.forRoot({

@@ -33,7 +33,7 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let dev of result$ | async ">
+      <tr *ngFor="let dev of result$ | async | paginate: {itemsPerPage: 10 , currentPage: paginaAtual}; let i = index ">
 
         <th scope="row"></th>
         <td>{{dev.name}}</td>
@@ -61,8 +61,10 @@
 
     </tbody>
    </table>
-<!-- Criando  paginação -->
+   <pagination-controls (pageChange)="paginaAtual = $event" previousLabel="Anterior" nextLabel="Próximo"></pagination-controls>
 
+<!-- Criando  paginação -->
+<!--
    <nav aria-label="Navegação de página exemplo">
     <ul class="pagination">
       <li class="page-item">
@@ -82,7 +84,7 @@
         </a>
       </li>
     </ul>
-  </nav>
+  </nav> -->
 
 
 
