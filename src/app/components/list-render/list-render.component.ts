@@ -33,9 +33,9 @@ export class ListRenderComponent implements OnInit {
 
 
   queryField = new FormControl();
-  @Input()
+
   result$!: Observable<any>;
-  @Input() result?: Observable<any>
+  result?: Observable<any>
   paginaAtual = 1;
 
   total?: number
@@ -58,7 +58,7 @@ export class ListRenderComponent implements OnInit {
 
 
 
-    this.result$ = this.queryField.valueChanges.pipe(
+    this.result = this.queryField.valueChanges.pipe(
 
       map((value: string) => value.trim()),
       filter((value: string) => value.length > 1),
@@ -115,14 +115,15 @@ export class ListRenderComponent implements OnInit {
 
     // if (value && (value = value.trim()) !== "") {
 
-    //   let params__ = new HttpParams()
-    //   params__ = params__.set('name', value)
-    //   params__ = params__.set('age', value)
-    //   params__ = params__.set('emial', value)
+      let params__ = new HttpParams()
+
+      params__ = params__.set('name', value)
+      params__ = params__.set('age', value)
+      params__ = params__.set('emial', value)
 
     // }
-    this.result$ = this.http.get(`${this.apiURL}/find.json?name=${value}`, this.queryField.value + value)
-
+    // this.result$ = this.http.get(`${this.apiURL}/list.json?name=${value}`, this.queryField.value + value)
+    this.result  = this.queryField.value + value
   }
 
   paginacao(page: number, size: number,) {

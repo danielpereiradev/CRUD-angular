@@ -33,7 +33,8 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let dev of result$ | async | paginate: {itemsPerPage: 10 , currentPage: paginaAtual}; let i = index ">
+      <tr *ngFor="let dev of devs  | paginate: {itemsPerPage: 10 , currentPage: paginaAtual}; let i = index ">
+
 
         <th scope="row"></th>
         <td>{{dev.name}}</td>
@@ -62,32 +63,6 @@
     </tbody>
    </table>
    <pagination-controls (pageChange)="paginaAtual = $event" previousLabel="Anterior" nextLabel="Próximo"></pagination-controls>
-
-<!-- Criando  paginação -->
-<!--
-   <nav aria-label="Navegação de página exemplo">
-    <ul class="pagination">
-      <li class="page-item">
-        <a class="page-link" href="#" aria-label="Anterior">
-          <span aria-hidden="true">&laquo;</span>
-          <span class="sr-only">Anterior</span>
-        </a>
-      </li>
-      <li class="page-item"><a class="page-link" routerLink="">1</a></li>
-      <li class="page-item"><a class="page-link" routerLink="">2</a></li>
-      <li class="page-item"><a class="page-link" routerLink="">3</a></li>
-      <li class="page-item">
-        <a class="page-link" href="#" aria-label="Próximo"  >
-          <span aria-hidden="true"  >&raquo;</span>
-          <span class="sr-only" (click)="paginacao(0,5)">Próximo</span>
-
-        </a>
-      </li>
-    </ul>
-  </nav> -->
-
-
-
 
   </div>
 

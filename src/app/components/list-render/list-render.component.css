@@ -10,6 +10,7 @@ li {
   padding: 10px;
 
 
+
 }
 
 .btn-light,
@@ -26,10 +27,7 @@ li {
 }
 
 .form {
-  /* display: flex; */
-  /* justify-content: flex-end; */
-  /* align-items: flex-end; */
-  /* width: 200px; */
+
   border-radius: 20px;
   /* margin-left: 800px; */
   padding: 5%;
@@ -69,21 +67,12 @@ li {
   text-align: center;
 }
 
-/* .form-control{
-  display: flex;
-  align-items: center;
-  position:relative;
-  margin-left: 800px;
-  height: 40px;
-
-
-
-} */
 
 #salve {
   color: #fff;
   align-items: flex-end;
   margin-left: 1100px;
+  padding: 5px;
 
 
 }
