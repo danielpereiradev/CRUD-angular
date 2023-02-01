@@ -1,7 +1,8 @@
 import { Devs } from "./Devs"
 
 export interface Page {
-  pageable: Page
+
+  content:Array<Devs>
   totalPages: number
   totalElements: number
   last: boolean

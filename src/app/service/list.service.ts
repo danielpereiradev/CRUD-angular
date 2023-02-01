@@ -3,10 +3,11 @@ import { AppComponent } from './../app.component';
 import { Injectable } from '@angular/core';
 import { Devs } from '../components/Devs';
 import { HttpClient } from '@angular/common/http';
-import { Observable, observable, take } from 'rxjs';
+import { Observable, observable, take, map } from 'rxjs';
 import { ReturnStatement } from '@angular/compiler';
 import { ToastrService } from 'ngx-toastr';
 import { ParamMap } from '@angular/router';
+
 
 
 @Injectable({
@@ -63,10 +64,11 @@ export class ListService {
 
   }
 
-  pageDevs(page:number, size:number){
-      return this.http.get<Devs[]>(`${this.apiURL}/page.json?page=${page}&size=${size}`)
-  }
+getPageDev(page:number, size:number):Observable<any>{
+  return this.http.get(`${this.apiURL}/page.json?page=${page}&size=${size}`)
 
+
+}
 
 }
 
