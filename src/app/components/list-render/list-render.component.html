@@ -15,7 +15,7 @@
   <form >
     <label for="busca"></label>
     <div class="col-md-5">
-      <input type="text" class="form-control" id="pesquisa" [formControl]="queryField"  (input)="onSearch()"
+      <input type="text" class="form-control" id="pesquisa" [formControl]="queryField"  (input)="onSearch() "
         placeholder="Search"  >
 
     </div>
@@ -34,7 +34,7 @@
     </thead>
     <tbody>
       <!-- <tr *ngFor="let dev of devs  | paginate: {itemsPerPage: 10 , currentPage: paginaAtual}; let i = index "> -->
-        <tr *ngFor="let dev of devs  ">
+        <tr *ngFor="let dev of  devs">
 
 
         <th scope="row"></th>
@@ -61,25 +61,18 @@
       </tr>
     <tbody>
 
-    </tbody>
    </table>
    <nav aria-label="Page navigation example">
     <ul class="pagination">
-      <li class="page-item">
-
-      </li>
       <li class="page-item"><a class="page-link" (click)="pageDevs(0,5)">1</a></li>
       <li class="page-item"><a class="page-link" (click)="pageDevs(1,5)">2</a></li>
       <li class="page-item"><a class="page-link" (click)="pageDevs(2,5)">3</a></li>
       <li class="page-item"><a class="page-link" (click)="pageDevs(3,5)">4</a></li>
-
-      <li class="page-item">
-
-
-      </li>
     </ul>
   </nav>
-   <!-- <pagination-controls (pageChange)="paginaAtual = $event" previousLabel="Anterior" nextLabel="Próximo"></pagination-controls> -->
+   <!-- <pagination-controls  [page]="page"  previousLabel="Anterior" nextLabel="Próximo"></pagination-controls> -->
+
 
   </div>
+
 

@@ -4,7 +4,7 @@ import { FormBuilder, FormGroup, FormControl } from '@angular/forms';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Devs } from '../Devs';
 import { ListService } from 'src/app/service/list.service';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Router, ActivatedRoute, Event } from '@angular/router';
 import { ThisReceiver } from '@angular/compiler';
 import { __param } from 'tslib';
 import { Page } from '../Page';
@@ -23,8 +23,10 @@ export class ListRenderComponent implements OnInit {
 
   private apiURL = "/api/developer"
   fields: string = "name,age,email"
+  searchText: string = ""
 
 
+  queryField = new FormControl();
 
 
 
@@ -32,14 +34,15 @@ export class ListRenderComponent implements OnInit {
   @Output() update = new EventEmitter(false)
 
 
-  queryField = new FormControl();
 
   result$!: Observable<any>;
-  result?: Observable<any>
+  result!: Observable<Devs[]>
   paginaAtual = 1;
-   page!: Page;
+  page!: Page;
 
   total?: number
+  size!: number;
+  pages!:number
 
 
   constructor(
@@ -58,8 +61,7 @@ export class ListRenderComponent implements OnInit {
   ngOnInit() {
 
    this.pageDevs(0,5)
-
-
+   console.log(this.result)
 
 
     this.result = this.queryField.valueChanges.pipe(
@@ -73,14 +75,12 @@ export class ListRenderComponent implements OnInit {
           name: value,
 
         }
-      })),
+      }))
+      ,
+      // tap((res:any) => res.result),
+      map((res: any) => res.result)
 
-      map((res: any) => res.result$)
     )
-
-
-
-
   }
 
 
@@ -117,17 +117,26 @@ export class ListRenderComponent implements OnInit {
     let value = this.queryField
 
 
-    this.result$ = this.http.get(`${this.apiURL}/find.json?name=`, this.queryField.value + value)
+    // this.result$ = this.http.get(`${this.apiURL}/find.json?name=${value}`, this.queryField.value + value)
     this.result
   }
 
 
   pageDevs(page:number, size:number){
+
     this.listService.getPageDev(page, size).subscribe(res => {
       this.devs = res.content
       this.devs = this.page.content
+
+
     })
   }
+  chagePage(event: any){
+    this.pageDevs(event.page,event.size)
+
+  }
+
+
 
   voltar(){
     this.location.back()
@@ -143,16 +152,6 @@ export class ListRenderComponent implements OnInit {
       this.devs = res
     })
   }
-
-
-
-
-
-
-
-
-
-
 
 }
 
