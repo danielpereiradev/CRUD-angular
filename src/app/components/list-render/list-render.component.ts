@@ -5,7 +5,7 @@ import { FormBuilder, FormGroup, FormControl } from '@angular/forms';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Devs } from '../Devs';
 import { ListService } from 'src/app/service/list.service';
-import { Router, ActivatedRoute, Event } from '@angular/router';
+import { Router, ActivatedRoute, Event, TitleStrategy } from '@angular/router';
 import { ThisReceiver } from '@angular/compiler';
 import { __param } from 'tslib';
 import { NgxPaginationModule } from 'ngx-pagination';
@@ -37,7 +37,7 @@ export class ListRenderComponent implements OnInit {
 
   result$!: Observable<any>;
   result!: Observable<Devs[]>
-  paginaAtual=0;
+  paginaAtual=1;
   pages!: Page;
 
   total?: number
@@ -57,9 +57,12 @@ export class ListRenderComponent implements OnInit {
   }
 
   ngOnInit() {
-    // this.pageDevs(this.paginaAtual,this.size)
-    this.proximo()
+    this.pageDevs(this.paginaAtual,this.size)
     this.voltar()
+    this.proximo()
+
+
+
 
 
     console.log(this.result)
@@ -118,7 +121,6 @@ export class ListRenderComponent implements OnInit {
     let value = this.queryField
 
 
-    // this.result$ = this.http.get(`${this.apiURL}/find.json?name=${value}`, this.queryField.value + value)
     this.result
   }
 
@@ -129,18 +131,12 @@ export class ListRenderComponent implements OnInit {
       this.devs = res.content
       this.devs = this.pages.content
 
-
-
-      // if (this.pages.totalPages != 0) {
-      //   this.paginaAtual+1
-      // } else if (this.pages.totalPages=3) {
-      //   this.paginaAtual-1
-      //   this.location.back()
+      // if(this.paginaAtual <=0){
+      // this.paginaAtual =  page+1
+      // }else{
+      //  this.paginaAtual= page-1
       // }
     })
-
-
-
 
   }
 
@@ -148,16 +144,24 @@ export class ListRenderComponent implements OnInit {
 
   voltar() {
     this.pageDevs(this.paginaAtual, this.size)
-
-
+    if(this.paginaAtual>=0&&this.paginaAtual>=1){
     this.paginaAtual--
+    }
+
+
+
+
 
 
   }
 
   proximo() {
    this.pageDevs(this.paginaAtual, this.size)
-    this.paginaAtual++
+   if(this.paginaAtual<=0){
+       this.paginaAtual++
+
+   }
+
 
   }
 
