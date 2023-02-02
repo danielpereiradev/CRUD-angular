@@ -12,11 +12,11 @@
 
   </div>
 
-  <form >
+  <form>
     <label for="busca"></label>
     <div class="col-md-5">
-      <input type="text" class="form-control" id="pesquisa" [formControl]="queryField"  (input)="onSearch() "
-        placeholder="Search"  >
+      <input type="text" class="form-control" id="pesquisa" [formControl]="queryField" (input)="onSearch() "
+        placeholder="Search">
 
     </div>
   </form>
@@ -29,12 +29,12 @@
         <th scope="col"></th>
         <th scope="col">Nome</th>
         <th scope="col">Email</th>
-        <th scope="">Idade</th>
+        <th scope="col">Idade</th>
       </tr>
     </thead>
     <tbody>
       <!-- <tr *ngFor="let dev of devs  | paginate: {itemsPerPage: 10 , currentPage: paginaAtual}; let i = index "> -->
-        <tr *ngFor="let dev of  devs">
+      <tr *ngFor="let dev of  devs">
 
 
         <th scope="row"></th>
@@ -56,23 +56,42 @@
             viewBox="0 0 16 16">
             <path
               d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0z" />
-        </svg>
+          </svg>
         </button>
       </tr>
     <tbody>
 
-   </table>
-   <nav aria-label="Page navigation example">
+  </table>
+  <!-- <nav aria-label="Page navigation example">
     <ul class="pagination">
-      <li class="page-item"><a class="page-link" (click)="pageDevs(0,5)">1</a></li>
-      <li class="page-item"><a class="page-link" (click)="pageDevs(1,5)">2</a></li>
-      <li class="page-item"><a class="page-link" (click)="pageDevs(2,5)">3</a></li>
-      <li class="page-item"><a class="page-link" (click)="pageDevs(3,5)">4</a></li>
+      <li class="page-item"><a class="page-link" (click)="pageDevs(pages,size)">1</a></li>
+      <li class="page-item"><a class="page-link" (click)="pageDevs(pages,size)">2</a></li>
+      <li class="page-item"><a class="page-link" (click)="pageDevs(pages,size)">3</a></li>
+      <li class="page-item"><a class="page-link" (click)="pageDevs(pages,size)">4</a></li>
     </ul>
-  </nav>
-   <!-- <pagination-controls  [page]="page"  previousLabel="Anterior" nextLabel="Próximo"></pagination-controls> -->
+  </nav> -->
+
+
+  <div class="pages">
+
+    <button (click)="voltar()"  >
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-double-left" viewBox="0 0 16 16">
+        <path fill-rule="evenodd" d="M8.354 1.646a.5.5 0 0 1 0 .708L2.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z"/>
+        <path fill-rule="evenodd" d="M12.354 1.646a.5.5 0 0 1 0 .708L6.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z"/>
+      </svg>
+
+    </button>
+    <button  (click)="proximo()"  >
+
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-double-right" viewBox="0 0 16 16">
+        <path fill-rule="evenodd" d="M3.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L9.293 8 3.646 2.354a.5.5 0 0 1 0-.708z"/>
+        <path fill-rule="evenodd" d="M7.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L13.293 8 7.646 2.354a.5.5 0 0 1 0-.708z"/>
+      </svg>
+    </button>
 
 
   </div>
+  <!-- <pagination-controls  [page]="page"  previousLabel="Anterior" nextLabel="Próximo"></pagination-controls> -->
 
 
+</div>

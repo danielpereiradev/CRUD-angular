@@ -1,3 +1,4 @@
+import { Page } from './../Page';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { map, Observable, tap, filter, distinctUntilChanged, debounceTime, switchMap, switchScan, throttleTime, config } from 'rxjs';
 import { FormBuilder, FormGroup, FormControl } from '@angular/forms';
@@ -7,7 +8,6 @@ import { ListService } from 'src/app/service/list.service';
 import { Router, ActivatedRoute, Event } from '@angular/router';
 import { ThisReceiver } from '@angular/compiler';
 import { __param } from 'tslib';
-import { Page } from '../Page';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { Location } from '@angular/common';
 
@@ -37,13 +37,11 @@ export class ListRenderComponent implements OnInit {
 
   result$!: Observable<any>;
   result!: Observable<Devs[]>
-  paginaAtual = 1;
-  page!: Page;
+  paginaAtual=0;
+  pages!: Page;
 
   total?: number
-  size!: number;
-  pages!:number
-
+  size=10;
 
   constructor(
     private listService: ListService,
@@ -51,7 +49,7 @@ export class ListRenderComponent implements OnInit {
     private route: ActivatedRoute,
     private formBuilder: FormBuilder,
     private http: HttpClient,
-    private location:Location
+    private location: Location
 
 
   ) {
@@ -59,9 +57,12 @@ export class ListRenderComponent implements OnInit {
   }
 
   ngOnInit() {
+    // this.pageDevs(this.paginaAtual,this.size)
+    this.proximo()
+    this.voltar()
 
-   this.pageDevs(0,5)
-   console.log(this.result)
+
+    console.log(this.result)
 
 
     this.result = this.queryField.valueChanges.pipe(
@@ -122,33 +123,47 @@ export class ListRenderComponent implements OnInit {
   }
 
 
-  pageDevs(page:number, size:number){
+  pageDevs(page: number, size: number) {
 
     this.listService.getPageDev(page, size).subscribe(res => {
       this.devs = res.content
-      this.devs = this.page.content
+      this.devs = this.pages.content
 
 
+
+      // if (this.pages.totalPages != 0) {
+      //   this.paginaAtual+1
+      // } else if (this.pages.totalPages=3) {
+      //   this.paginaAtual-1
+      //   this.location.back()
+      // }
     })
-  }
-  chagePage(event: any){
-    this.pageDevs(event.page,event.size)
+
+
+
 
   }
 
 
 
-  voltar(){
-    this.location.back()
+  voltar() {
+    this.pageDevs(this.paginaAtual, this.size)
+
+
+    this.paginaAtual--
+
+
   }
 
-  proximo(){
-    this.location.getState()
+  proximo() {
+   this.pageDevs(this.paginaAtual, this.size)
+    this.paginaAtual++
+
   }
 
 
-  getAllDevs( ){
-    this.listService.getAll().subscribe(res=> {
+  getAllDevs() {
+    this.listService.getAll().subscribe(res => {
       this.devs = res
     })
   }
