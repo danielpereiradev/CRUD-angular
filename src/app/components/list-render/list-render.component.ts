@@ -1,8 +1,8 @@
 import { Page } from './../Page';
 import { HttpClient, HttpParams } from '@angular/common/http';
-import { map, Observable, tap, filter, distinctUntilChanged, debounceTime, switchMap, switchScan, throttleTime, config } from 'rxjs';
+import { map, Observable, tap, filter, distinctUntilChanged, debounceTime, switchMap, switchScan, throttleTime, config, Subject, take } from 'rxjs';
 import { FormBuilder, FormGroup, FormControl } from '@angular/forms';
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EnvironmentInjector, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Devs } from '../Devs';
 import { ListService } from 'src/app/service/list.service';
 import { Router, ActivatedRoute, Event, TitleStrategy } from '@angular/router';
@@ -26,7 +26,7 @@ export class ListRenderComponent implements OnInit {
   searchText: string = ""
 
 
-  queryField = new FormControl();
+  queryField$ = new Subject<string>();
 
 
 
@@ -35,13 +35,15 @@ export class ListRenderComponent implements OnInit {
 
 
 
-  result$!: Observable<any>;
+  result$!: Observable<Devs[]>;
   result!: Observable<Devs[]>
-  paginaAtual=1;
+  paginaAtual= 0;
   pages!: Page;
+  withResfresh=false
 
   total?: number
-  size=10;
+  size = 5;
+
 
   constructor(
     private listService: ListService,
@@ -58,38 +60,30 @@ export class ListRenderComponent implements OnInit {
 
   ngOnInit() {
     this.pageDevs(this.paginaAtual,this.size)
-    this.voltar()
-    this.proximo()
+    // this.voltar()
+    // this.proximo()
 
 
 
 
 
-    console.log(this.result)
 
 
-    this.result = this.queryField.valueChanges.pipe(
-
+this.result = this.queryField$.pipe(
       map((value: string) => value.trim()),
       filter((value: string) => value.length > 1),
       debounceTime(200),
       tap((value: any) => console.log(value)),
-      switchMap(value => this.http.get(`${this.apiURL}/find.json?`, {
-        params: {
-          name: value,
-
-        }
-      }))
+      switchMap(devsName=>this.listService.listDevs(devsName))
       ,
-      // tap((res:any) => res.result),
-      map((res: any) => res.result)
+      tap((res:any) => res.devs$),
+      map((res: any) => res.devs$)
 
     )
   }
 
 
-  devs: Devs[] = []
-
+  devs:Devs[]=[];
   detalis = ""
 
   showId(dev: Devs) {
@@ -98,11 +92,11 @@ export class ListRenderComponent implements OnInit {
 
 
   deleteDev(dev: Devs) {
-    this.devs = this.devs.filter((a) => dev.name !== a.name)
+    // this.devs$ = this.devs$.filter((a) => dev.name !== a.name)
     this.listService.remove(dev.id).subscribe()
   }
   getDevs(): void {
-    this.listService.getAll().subscribe((devs) => (this.devs = devs))
+    this.listService.getAll().subscribe((devs) => (this.devs  ))
 
   }
 
@@ -116,27 +110,30 @@ export class ListRenderComponent implements OnInit {
 
   }
 
-  onSearch(): void {
+  onSearch(event:any): string {
 
-    let value = this.queryField
+  return (event.target  as  HTMLInputElement).value;
 
-
-    this.result
   }
+
+
+  getSearch(devsName:string){
+    this.queryField$.next(devsName)
+
+  }
+
+
+
 
 
   pageDevs(page: number, size: number) {
 
     this.listService.getPageDev(page, size).subscribe(res => {
       this.devs = res.content
-      this.devs = this.pages.content
 
-      // if(this.paginaAtual <=0){
-      // this.paginaAtual =  page+1
-      // }else{
-      //  this.paginaAtual= page-1
-      // }
+
     })
+
 
   }
 
@@ -144,33 +141,28 @@ export class ListRenderComponent implements OnInit {
 
   voltar() {
     this.pageDevs(this.paginaAtual, this.size)
-    if(this.paginaAtual>=0&&this.paginaAtual>=1){
-    this.paginaAtual--
+    if ( this.paginaAtual != 0  &&  this.paginaAtual ) {
+      this.paginaAtual --
+    }
+
+  }
+
+
+  proximo() {
+    this.pageDevs(this.paginaAtual, this.size)
+    if (this.paginaAtual !=  3  ) {
+      this.paginaAtual++
     }
 
 
-
-
-
-
-  }
-
-  proximo() {
-   this.pageDevs(this.paginaAtual, this.size)
-   if(this.paginaAtual<=0){
-       this.paginaAtual++
-
-   }
-
-
   }
 
 
-  getAllDevs() {
-    this.listService.getAll().subscribe(res => {
-      this.devs = res
-    })
-  }
+  // getAllDevs() {
+  //   this.listService.getAll().subscribe(res => {
+  //     this.devs = res
+  //   })
+  // }
 
 }
 

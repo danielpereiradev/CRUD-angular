@@ -68,11 +68,13 @@ li {
 }
 
 
-#salve {
+#salve , .busca {
   color: #fff;
-  align-items: flex-end;
-  margin-left: 1100px;
-  padding: 5px;
+  width: 15%;
+  align-items: center;
+  display: inline-block;
+  margin-left: 1000px;
+
 
 
 }
