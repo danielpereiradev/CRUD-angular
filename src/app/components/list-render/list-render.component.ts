@@ -114,19 +114,28 @@ export class ListRenderComponent implements OnInit {
 
     });
   }
-  private _filterEvent():void{ // Esse metodó está filtrando os valores
+  private _filterEvent():void{ // Esse método está filtrando os valores
     this.form.get('name').valueChanges.subscribe(res => {
-    if(res?.trim()?.length){
+
       console.log(name);
 
       this._searchDev(res);
-     }
+
+
+
+
     });
+
+
   }
 
   private _searchDev(name:string):void{// Esse método faz a busca por nome
     let list = this.devs?.map(res => res);
-    this.devList = list?.filter(res => res.name?.trim()?.toLowerCase().includes(name?.trim()?.toLowerCase()));
+    if(name?.trim()){
+      this.devList = list?.filter(res => res.name?.trim()?.toLowerCase().includes(name?.trim()?.toLowerCase()));
+    }
+
+      this.devList = list?.filter(res => res.name?.trim()?.toLowerCase().includes(name?.trim()?.toLowerCase()));
   }
 
   private _pageDevs(page: number, size: number) {
@@ -134,8 +143,8 @@ export class ListRenderComponent implements OnInit {
     this.listService.getPageDev(page, size).subscribe(res => {
       this.devs = res.content
       this.devList =res.content;
-    })
 
+    });
 
   }
 
