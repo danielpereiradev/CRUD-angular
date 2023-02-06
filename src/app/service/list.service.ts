@@ -3,7 +3,7 @@ import { AppComponent } from './../app.component';
 import { Injectable } from '@angular/core';
 import { Devs } from '../components/Devs';
 import { HttpClient } from '@angular/common/http';
-import { Observable, observable, take, map } from 'rxjs';
+import { Observable, observable, take, map, of } from 'rxjs';
 import { ReturnStatement } from '@angular/compiler';
 import { ToastrService } from 'ngx-toastr';
 import { ParamMap } from '@angular/router';
@@ -63,6 +63,22 @@ export class ListService {
 
 
   }
+
+  // searchDevs(name:string):Observable<Devs[]>{
+  //   if(!name.trim()){
+  //     return  of([])
+  //   }
+  // return this.http.get<Devs[]>(`${this.apiURL}/find.json?name=`).pipe()
+
+
+
+
+  // }
+
+
+
+
+
 
 getPageDev(page:number, size:number):Observable<any>{
   return this.http.get(`${this.apiURL}/page.json?page=${page}&size=${size}`)

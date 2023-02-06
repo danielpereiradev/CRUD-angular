@@ -12,10 +12,10 @@
 
   </div>
 
-  <form>
+  <form [formGroup]="form">
     <label for="busca"></label>
     <div class="col-md-5">
-      <input type="text" class="form-control" id="pesquisa"     (input)="onSearch($event)"    placeholder="Search">
+      <input type="text" class="form-control" id="pesquisa"     formControlName="name"  placeholder="Search" >
 
     </div>
   </form>
@@ -33,7 +33,7 @@
     </thead>
     <tbody>
       <!-- <tr *ngFor="let dev of devs  | paginate: {itemsPerPage: 10 , currentPage: paginaAtual}; let i = index "> -->
-      <tr *ngFor="let dev of  devs">
+      <tr *ngFor="let dev of  devList">
 
 
         <th scope="row"></th>

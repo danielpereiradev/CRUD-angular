@@ -27,83 +27,76 @@ export class FormsComponent implements OnInit {
     private location: Location,
   ) {
 
-    // this.form = this.formBuilder.group({
-    //   name: [null],
-    //   // age: [null],
-    //   email: [null],
-    //   id: [null]
-    // })
-
   }
 
   ngOnInit(): void {
-
-    this.route.params.subscribe(
-      (params: any) => {
-        const id = params['id']
-        const dev$ = this.service.getItem(id)
-        dev$.subscribe(dev => {
-          this.updateForms(dev)
-        })
-      })
-
-
-
-    this.form = this.formBuilder.group({
-
-
-      id: new FormControl(),
-      name: [null],
-      age: [null],
-      email: [null],
-
-    })
-
+    this._createFomsCadastro();
+    this._routeUpdate();
 
     this.form.value
   }
 
 
+  // Métodos publicos
 
-
-  onSubmit() {
+  public onSubmit():void {
     console.log(this.form.value)
-    this.service.create(this.form.value).subscribe( result => this.showSuccess(), erro => this.showErro( ))
+      this.service.create(this.form.value).subscribe( result => {
+        this._showSuccess(), erro => this._showErro( )
+      });
 
-      if(this.form.status != "VALID"){
-        this.showErro()
-      }
-
-    this.location.back()
+    if(this.form.status != "VALID"){
+      this._showErro()
+    }
+    this.location.back();
   }
 
 
-
-  showSuccess() {
-      this.toast.success("Salvo !!!!")
-
-
-  }
-
-  showErro() {
-      this.toast.error("Error ")
-
-
-  }
-
-  onCancel() {
+  public onCancel():void {
     this.form.reset();
-    this.location.back()
+    this.location.back();
   }
 
-  updateForms(dev: Devs) {
+
+
+  //Métodos Privados
+
+
+  private _showSuccess():void {
+    this.toast.success("Salvo !!!!")
+  }
+
+  private _showErro():void {
+    this.toast.error("Error ");
+
+  }
+
+  private _updateForms(dev: Devs):void {
     this.form.patchValue({
       id: dev.id,
       name: dev.name,
       email: dev.email,
       age:dev.age
-    })
+    });
+  }
 
+  private _createFomsCadastro():void{
+    this.form = this.formBuilder.group({
+      id: new FormControl(),
+      name: [null],
+      age: [null],
+      email: [null],
+    });
+  }
+  private _routeUpdate():void{
+    this.route.params.subscribe(
+      (params: any) => {
+        const id = params['id']
+        const dev$ = this.service.getItem(id)
+        dev$.subscribe(dev => {
+          this._updateForms(dev)
+        })
+      });
   }
 
 }
