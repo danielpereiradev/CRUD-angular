@@ -14,10 +14,14 @@
 
   <form [formGroup]="form">
     <label for="busca"></label>
-    <div class="col-md-5">
-      <input type="text" class="form-control" id="pesquisa"     formControlName="name"  placeholder="Search" >
+    <div class="col-md-5" id="filtros">
+      <input type="text" class="form-control" id="campo-pesquisa"     formControlName="name"  placeholder="Search" >
+      <button class="btn btn-primary" id="pesquisa" >Pesquisa</button>
 
     </div>
+
+
+
   </form>
 
 </div>

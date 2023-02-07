@@ -10,6 +10,7 @@ import { ThisReceiver } from '@angular/compiler';
 import { __param } from 'tslib';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { Location } from '@angular/common';
+import { transition } from '@angular/animations';
 
 @Component({
   selector: 'app-list-render',
@@ -29,11 +30,11 @@ export class ListRenderComponent implements OnInit {
 
 
 
-   dev: Devs[] = []
+  dev: Devs[] = []
   @Output() update = new EventEmitter(false)
 
 
-
+  pages:Page;
   paginaAtual= 0;
   withResfresh=false
 
@@ -56,9 +57,11 @@ export class ListRenderComponent implements OnInit {
 
   ngOnInit() {
 
-   this._createFilterForm();
-   this._filterEvent()
-    this._pageDevs(this.paginaAtual,this.size)
+   this._createFilterNameForm();
+   this._filterEvent();
+   this._pageDevs(this.paginaAtual,this.size);
+
+   this._createFilterAgeForm();
 
 
   }
@@ -71,8 +74,9 @@ export class ListRenderComponent implements OnInit {
   // Métodos Publicos -- São Métodos que chamados diretamente no html --
 
  public deleteDev(dev: Devs):void {
-    // this.devs$ = this.devs$.filter((a) => dev.name !== a.name)
-      this.listService.remove(dev.id).subscribe()
+    this.devList = this.devList.filter((a) => dev.name !== a.name)
+    this.listService.remove(dev.id).subscribe()
+
   }
 
   public getDevs(): void {
@@ -91,7 +95,7 @@ export class ListRenderComponent implements OnInit {
 
   public voltar():void {
     this._pageDevs(this.paginaAtual, this.size)
-    if ( this.paginaAtual != 0  &&  this.paginaAtual ) {
+    if ( this.paginaAtual != 0) {
       this.paginaAtual --
     }
 
@@ -99,7 +103,8 @@ export class ListRenderComponent implements OnInit {
 
   public proximo():void {
     this._pageDevs(this.paginaAtual, this.size)
-    if (this.paginaAtual !=  3  ) {
+
+    if (this.paginaAtual != 5) {
       this.paginaAtual++
     }
 
@@ -108,7 +113,7 @@ export class ListRenderComponent implements OnInit {
 
 // Métodos Privados -- São metodos que não são usados no html --
 
-  private _createFilterForm():void{ // Esse método está criando o formnulário
+  private _createFilterNameForm():void{ // Esse método está criando o formulário
     this.form = this.formBuilder.group({
       name:[null],
 
@@ -120,13 +125,7 @@ export class ListRenderComponent implements OnInit {
       console.log(name);
 
       this._searchDev(res);
-
-
-
-
     });
-
-
   }
 
   private _searchDev(name:string):void{// Esse método faz a busca por nome
@@ -138,8 +137,16 @@ export class ListRenderComponent implements OnInit {
       this.devList = list?.filter(res => res.name?.trim()?.toLowerCase().includes(name?.trim()?.toLowerCase()));
   }
 
-  private _pageDevs(page: number, size: number) {
+  private _createFilterAgeForm():void{
+    this.form = this.formBuilder.group({
+      idade:[null]
 
+    });
+
+    console.log("Idade!!!!!!")
+  }
+
+ private _pageDevs(page: number, size: number) { // Esse método é responsavel de fazer a paginação
     this.listService.getPageDev(page, size).subscribe(res => {
       this.devs = res.content
       this.devList =res.content;
@@ -147,6 +154,7 @@ export class ListRenderComponent implements OnInit {
     });
 
   }
+
 
 
 

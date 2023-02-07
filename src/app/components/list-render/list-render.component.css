@@ -8,15 +8,11 @@ li {
   padding: 10px;
   font-size: 15px;
   padding: 10px;
-
-
-
 }
 
 .btn-light,
 #delete {
   color: rgb(0, 0, 0);
-
   border: none;
   border-radius: 1px;
 
@@ -27,14 +23,9 @@ li {
 }
 
 .form {
-
   border-radius: 20px;
-  /* margin-left: 800px; */
   padding: 5%;
   margin-left: 300px;
-
-
-
 }
 
 .busca {
@@ -46,12 +37,9 @@ li {
 
 .btn-success,
 #busca {
-
   display: inline-block;
   border: none;
   color: black;
-
-
 }
 
 
@@ -74,9 +62,6 @@ li {
   align-items: center;
   display: inline-block;
   margin-left: 1000px;
-
-
-
 }
 
 .bi-plus-circle {
@@ -87,11 +72,7 @@ li {
 .items {
   display: inline;
 }
-
-.paginas  {
-  padding: 20px;
-  background: none;
-  margin: 10px;
-  border: none;
-
+#filtros{
+  /* display:inline-block; */
+  float: left;
 }

@@ -20,24 +20,27 @@ export class ListService {
 
   constructor(private http: HttpClient, private toast: ToastrService) { }
 
-  remove(id: number) {
+
+// Métodos Public
+
+  public remove(id: number) {
     return this.http.delete<Devs>(`${this.apiURL}/${id}`)
   }
-  getAll(): Observable<Devs[]> {
+  public getAll(): Observable<Devs[]> {
     return this.http.get<Devs[]>(this.apiURL)
 
   }
 
-  findDev(): Observable<Devs[]> {
+  public findDev(): Observable<Devs[]> {
     return this.http.get<Devs[]>(`${this.apiURL}/find.json?name`)
 
   }
 
-  getItem(id: number): Observable<Devs> {
+  public getItem(id: number): Observable<Devs> {
     return this.http.get<Devs>(`${this.apiURL}/${id}`)
 
   }
-  create(dev: Partial<Devs>) {
+  public create(dev: Partial<Devs>) {
     console.log(dev)
     if (dev.id) {
       console.log("update")
@@ -49,6 +52,7 @@ export class ListService {
     }
 
   }
+// Métodos Private
 
   private save(dev: Partial<Devs>) {
     return this.http.post<Devs>(this.apiURL, dev)
@@ -61,30 +65,13 @@ export class ListService {
   listDevs(dev: Devs) {
     return this.http.get<Devs[]>(`${this.apiURL}/find.json?name=${dev.name}`)
 
-
   }
 
-  // searchDevs(name:string):Observable<Devs[]>{
-  //   if(!name.trim()){
-  //     return  of([])
-  //   }
-  // return this.http.get<Devs[]>(`${this.apiURL}/find.json?name=`).pipe()
+  getPageDev(page:number, size:number):Observable<any>{
+    return this.http.get(`${this.apiURL}/page.json?page=${page}&size=${size}`)
 
 
-
-
-  // }
-
-
-
-
-
-
-getPageDev(page:number, size:number):Observable<any>{
-  return this.http.get(`${this.apiURL}/page.json?page=${page}&size=${size}`)
-
-
-}
+  }
 
 }
 
