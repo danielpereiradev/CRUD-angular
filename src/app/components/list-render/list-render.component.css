@@ -22,11 +22,6 @@ li {
   color: rgba(204, 0, 0, 0.894)
 }
 
-.form {
-  border-radius: 20px;
-  padding: 5%;
-  margin-left: 300px;
-}
 
 .busca {
   display: flex;
@@ -69,10 +64,4 @@ li {
   font-size: 5em;
 }
 
-.items {
-  display: inline;
-}
-#filtros{
-  /* display:inline-block; */
-  float: left;
-}
+

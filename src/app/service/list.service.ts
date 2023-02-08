@@ -44,34 +44,38 @@ export class ListService {
     console.log(dev)
     if (dev.id) {
       console.log("update")
-      return this.update(dev)
+      return this._update(dev)
 
     } else {
       console.log("Seved ")
-      return this.save(dev)
+      return this._save(dev)
     }
 
   }
+  public getPageDev(page:number, size:number):Observable<any>{
+    return this.http.get(`${this.apiURL}/page.json?page=${page}&size=${size}`)
+
+  }
+
+  public findAge(age:number){
+    return this.http.get(`${this.apiURL}/get-age.json?age=${age}`)
+  }
+
 // Métodos Private
 
-  private save(dev: Partial<Devs>) {
+  private _save(dev: Partial<Devs>) {
     return this.http.post<Devs>(this.apiURL, dev)
   }
 
-  private update(dev: Partial<Devs>) {
+  private _update(dev: Partial<Devs>) {
     return this.http.put(`${this.apiURL}/atulizar/devs/${dev.id}`, dev)
   }
 
-  listDevs(dev: Devs) {
+ private _listDevs(dev: Devs) {
     return this.http.get<Devs[]>(`${this.apiURL}/find.json?name=${dev.name}`)
 
   }
 
-  getPageDev(page:number, size:number):Observable<any>{
-    return this.http.get(`${this.apiURL}/page.json?page=${page}&size=${size}`)
-
-
-  }
 
 }
 

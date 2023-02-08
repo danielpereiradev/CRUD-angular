@@ -6,7 +6,7 @@ import { Component, EnvironmentInjector, EventEmitter, Input, OnInit, Output } f
 import { Devs } from '../Devs';
 import { ListService } from 'src/app/service/list.service';
 import { Router, ActivatedRoute,  TitleStrategy } from '@angular/router';
-import { ThisReceiver } from '@angular/compiler';
+import { parseHostBindings, ThisReceiver } from '@angular/compiler';
 import { __param } from 'tslib';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { Location } from '@angular/common';
@@ -20,6 +20,7 @@ import { transition } from '@angular/animations';
 export class ListRenderComponent implements OnInit {
 
   form!: FormGroup
+  formAge!:FormGroup
 
 
   private apiURL = "/api/developer"
@@ -58,10 +59,12 @@ export class ListRenderComponent implements OnInit {
   ngOnInit() {
 
    this._createFilterNameForm();
-   this._filterEvent();
+   this._filterEventFormName();
+
+
    this._pageDevs(this.paginaAtual,this.size);
 
-   this._createFilterAgeForm();
+  //  this._createFilterAgeForm();
 
 
   }
@@ -89,7 +92,7 @@ export class ListRenderComponent implements OnInit {
       });
 
   }
-   public updateDev(id: number):void {
+  public updateDev(id: number):void {
       this.router.navigate(['editar', id], { relativeTo: this.route })
   }
 
@@ -110,50 +113,64 @@ export class ListRenderComponent implements OnInit {
 
   }
 
-
 // Métodos Privados -- São metodos que não são usados no html --
 
   private _createFilterNameForm():void{ // Esse método está criando o formulário
     this.form = this.formBuilder.group({
       name:[null],
+      age:[null]
+
 
     });
   }
-  private _filterEvent():void{ // Esse método está filtrando os valores
+  private _filterEventFormName():void{ // Esse método está filtrando os valores
     this.form.get('name').valueChanges.subscribe(res => {
 
       console.log(name);
 
-      this._searchDev(res);
+      this._searchDevName(res);
     });
+
+    this.form.get('age').valueChanges.subscribe(res => {
+
+
+      this._searchDevAge(res);
+    })
+
+
+
   }
 
-  private _searchDev(name:string):void{// Esse método faz a busca por nome
+  private _searchDevName(name?:string, age?:number):void{// Esse método faz a busca por nome
     let list = this.devs?.map(res => res);
     if(name?.trim()){
       this.devList = list?.filter(res => res.name?.trim()?.toLowerCase().includes(name?.trim()?.toLowerCase()));
     }
-
       this.devList = list?.filter(res => res.name?.trim()?.toLowerCase().includes(name?.trim()?.toLowerCase()));
-  }
+    }
 
-  private _createFilterAgeForm():void{
-    this.form = this.formBuilder.group({
-      idade:[null]
+  private _searchDevAge(age?:string){
+      let list = this.devs?.map(res => res);
 
-    });
+      this.devList = list?. filter(res => res.age?.toString().includes(age?.trim()));
+    }
 
-    console.log("Idade!!!!!!")
-  }
 
- private _pageDevs(page: number, size: number) { // Esse método é responsavel de fazer a paginação
+
+
+
+
+  private _pageDevs(page: number, size: number) { // Esse método é responsavel de fazer a paginação
     this.listService.getPageDev(page, size).subscribe(res => {
       this.devs = res.content
       this.devList =res.content;
 
     });
 
+
+
   }
+
 
 
 
