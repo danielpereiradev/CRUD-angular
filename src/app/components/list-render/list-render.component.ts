@@ -27,7 +27,7 @@ export class ListRenderComponent implements OnInit {
   fields: string = "name,age,email"
   searchText = new FormControl();
 
- private queryField =new Subject<string>();
+ queryField =new FormControl();
 
 
 
@@ -76,7 +76,7 @@ export class ListRenderComponent implements OnInit {
 
   // Métodos Publicos -- São Métodos que chamados diretamente no html --
 
- public deleteDev(dev: Devs):void {
+  public deleteDev(dev: Devs):void {
     this.devList = this.devList.filter((a) => dev.name !== a.name)
     this.listService.remove(dev.id).subscribe()
 
@@ -106,16 +106,16 @@ export class ListRenderComponent implements OnInit {
   public proximo():void {
     this._pageDevs(this.paginaAtual, this.size)
 
-    if (this.paginaAtual != 5) {
+  if (this.paginaAtual != 5) {
       this.paginaAtual++
     }
 
   }
-  public buttonFilter():void{
-    this._createFilterNameForm();
-    this._filterEventFormName();
 
-  }
+
+
+
+
 
 // Métodos Privados -- São metodos que não são usados no html --
 
@@ -139,7 +139,6 @@ export class ListRenderComponent implements OnInit {
     })
 
   }
-
   private _searchDevName(name?:string, age?:number):void{// Esse método faz a busca por nome
     let list = this.devs?.map(res => res);
     if(name?.trim()){
@@ -148,14 +147,15 @@ export class ListRenderComponent implements OnInit {
       this.devList = list?.filter(res => res.name?.trim()?.toLowerCase().includes(name?.trim()?.toLowerCase()));
     }
 
-  private _searchDevAge(age?:string){
-      let list = this.devs?.map(res => res);
+  private _searchDevAge(age?:string):void{
+    let list = this.devs?.map(res => res);
 
-      this.devList = list?. filter(res => res.age?.toString().includes(age?.trim()));
-    }
+    this.devList = list?.filter(res => res.age?.toString().includes(age?.trim()));
 
 
-  private _pageDevs(page: number, size: number) { // Esse método é responsavel de fazer a paginação
+  }
+
+  private _pageDevs(page: number, size: number):void { // Esse método é responsavel de fazer a paginação
     this.listService.getPageDev(page, size).subscribe(res => {
       this.devs = res.content
       this.devList =res.content;

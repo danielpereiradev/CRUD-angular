@@ -60,6 +60,10 @@ export class ListService {
   public findAge(age:number){
     return this.http.get(`${this.apiURL}/get-age.json?age=${age}`)
   }
+  public listDevs(dev: Devs) {
+    return this.http.get<Devs[]>(`${this.apiURL}/find.json?name=${dev.name}`)
+
+  }
 
 // Métodos Private
 
@@ -71,10 +75,7 @@ export class ListService {
     return this.http.put(`${this.apiURL}/atulizar/devs/${dev.id}`, dev)
   }
 
- private _listDevs(dev: Devs) {
-    return this.http.get<Devs[]>(`${this.apiURL}/find.json?name=${dev.name}`)
 
-  }
 
 
 }
