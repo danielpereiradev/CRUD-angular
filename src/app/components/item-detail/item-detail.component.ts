@@ -23,9 +23,11 @@ dev?:Devs
 
   }
 
-  getDevs(){
+public getDevs():void{
     const id  = Number(this.router.snapshot.paramMap.get("id"))
-    this.listService.getItem(id).subscribe((dev)=>(this.dev=dev))
+    this.listService.getItem(id).subscribe((dev)=>
+    (this.dev=dev
+      ));
   }
 
 }

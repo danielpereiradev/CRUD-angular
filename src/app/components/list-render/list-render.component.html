@@ -15,7 +15,6 @@
     <label for="busca"></label>
 
     <div class="row">
-
       <label for="">Filtros</label>
       <div class="col-md-3">
         <input type="text" class="form-control"  formControlName="name" placeholder="Por nome...">
@@ -24,10 +23,9 @@
         <input type="text" class="form-control" formControlName="age"  placeholder="Por idade...">
       </div>
       <div class="col-md-3">
-        <button class="btn btn-primary">Search</button>
+        <button class="btn btn-primary" (click)="onFilter()">Search</button>
       </div>
     </div>
-
 
   </form>
 

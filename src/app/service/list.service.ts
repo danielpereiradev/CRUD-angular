@@ -57,11 +57,17 @@ export class ListService {
 
   }
 
-  public findAge(age:number){
-    return this.http.get(`${this.apiURL}/get-age.json?age=${age}`)
+  public findAge(dev:Devs){
+    return this.http.get<Devs[]>(`${this.apiURL}/get-age.json?age=${dev.age}`)
   }
   public listDevs(dev: Devs) {
     return this.http.get<Devs[]>(`${this.apiURL}/find.json?name=${dev.name}`)
+
+  }
+  public filtroDinamico(dev:Devs){
+    let name
+    let age
+
 
   }
 

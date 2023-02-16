@@ -64,8 +64,6 @@ export class ListRenderComponent implements OnInit {
 
    this._pageDevs(this.paginaAtual,this.size);
 
-  //  this._createFilterAgeForm();
-
 
   }
 
@@ -109,12 +107,21 @@ export class ListRenderComponent implements OnInit {
   if (this.paginaAtual != 5) {
       this.paginaAtual++
     }
-
   }
 
+  public onFilter():void{
+      this.listService.listDevs(this.form.value).subscribe(res => {
 
+          this.devList=res;
 
+      });
+      this.listService.findAge(this.form.value).subscribe(res => {
 
+          this.devList=res;
+
+      });
+
+  }
 
 
 // Métodos Privados -- São metodos que não são usados no html --
@@ -124,21 +131,23 @@ export class ListRenderComponent implements OnInit {
       name:[null],
       age:[null]
 
-
     });
   }
+
   private _filterEventFormName():void{ // Esse método está filtrando os valores
     this.form.get('name').valueChanges.subscribe(res => {
 
-      this._searchDevName(res);
+      // this.searchDevName(res)
+
     });
 
     this.form.get('age').valueChanges.subscribe(res => {
 
-      this._searchDevAge(res);
+      // this._searchDevAge(res);
     })
 
   }
+
   private _searchDevName(name?:string, age?:number):void{// Esse método faz a busca por nome
     let list = this.devs?.map(res => res);
     if(name?.trim()){
