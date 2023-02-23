@@ -1,10 +1,6 @@
 
  *{
   box-sizing: border-box;
-
-
-
-
 }
 
 .col{
@@ -24,12 +20,7 @@ li a{
   /* border: solid rgb(94, 137, 89) 1px; */
 
 }
-/* .menu{
-  list-style-type: none ;
-  display:flex;
-  justify-content: space-around;
-  padding: 1em;
-  position:relative;
+/* .menu{:relative;
 
   width: 650px;
   margin:0px;

@@ -11,17 +11,19 @@ show:boolean = false;
 
 parabens:boolean= false;
 
- showMenssege():void {
+
+
+public showMenssege():void {
   this.show = !this.show
  }
 
- showImage():void {
-this.parabens = !this.parabens
+public showImage():void {
+  this.parabens = !this.parabens
 
  }
 
 
-  constructor(){}
+constructor(){}
 
 ngOnInit(): void {
 

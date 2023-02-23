@@ -65,9 +65,6 @@ export class ListService {
 
   }
   public filtroDinamico(dev:Devs){
-    let name
-    let age
-
 
   }
 

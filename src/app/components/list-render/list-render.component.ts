@@ -61,7 +61,6 @@ export class ListRenderComponent implements OnInit {
    this._createFilterNameForm();
    this._filterEventFormName();
 
-
    this._pageDevs(this.paginaAtual,this.size);
 
 
@@ -171,7 +170,14 @@ export class ListRenderComponent implements OnInit {
 
     });
 
+  }
 
+  private _pagesDevsParms(page:number, size:number, ):void{
+    this.listService.getPageDev(page,size).subscribe(res => {
+       this.devs = res.content
+       this.devList = res.content
+
+    });
 
   }
 

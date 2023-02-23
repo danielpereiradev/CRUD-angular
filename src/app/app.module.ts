@@ -43,8 +43,6 @@ import { FilterPipe } from './pipes/filter.pipe';
     TelaEdtarComponent,
     FilterPipe,
 
-
-
   ],
   imports: [
     BrowserModule,
@@ -59,11 +57,6 @@ import { FilterPipe } from './pipes/filter.pipe';
     ToastrModule.forRoot({
 
     }),
-
-
-
-
-
 
   ],
   providers: [],

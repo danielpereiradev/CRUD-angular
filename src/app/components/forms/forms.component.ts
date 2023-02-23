@@ -51,7 +51,6 @@ export class FormsComponent implements OnInit {
     this.location.back();
   }
 
-
   public onCancel():void {
     this.form.reset();
     this.location.back();
