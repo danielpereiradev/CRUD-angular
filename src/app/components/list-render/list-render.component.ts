@@ -103,7 +103,7 @@ export class ListRenderComponent implements OnInit {
   public proximo():void {
     this._pageDevs(this.paginaAtual, this.size)
 
-  if (this.paginaAtual != 5) {
+  if (this.paginaAtual != 6) {
       this.paginaAtual++
     }
   }
@@ -121,7 +121,6 @@ export class ListRenderComponent implements OnInit {
       });
 
   }
-
 
 // Métodos Privados -- São metodos que não são usados no html --
 
