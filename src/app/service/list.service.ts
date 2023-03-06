@@ -78,9 +78,6 @@ export class ListService {
     return this.http.put(`${this.apiURL}/atulizar/devs/${dev.id}`, dev)
   }
 
-
-
-
 }
 
 

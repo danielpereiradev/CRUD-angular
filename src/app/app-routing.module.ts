@@ -10,7 +10,6 @@ import { RouterModule, Routes } from '@angular/router';
 import { FistComponentComponent } from './components/fist-component/fist-component.component';
 import { ItemDetailComponent } from './components/item-detail/item-detail.component';
 import { ListRenderComponent } from './components/list-render/list-render.component';
-import { TelaEdtarComponent } from './components/tela-edtar/tela-edtar.component';
 
 
 
@@ -21,7 +20,6 @@ const routes:Routes= [
   {path:'eventos',component:EventosComponent},
   {path:'if',component:IfRenderComponent},
   {path:'forms',component:FormsComponent},
-  {path:'tela-edtar', component:TelaEdtarComponent},
   {path:"editar/:id",component:FormsComponent},
 
 

@@ -50,19 +50,13 @@ export class ListRenderComponent implements OnInit {
     private formBuilder: FormBuilder,
     private http: HttpClient,
     private location: Location
-
-
-  ) {
-
-  }
+  ) {}
 
   ngOnInit() {
 
    this._createFilterNameForm();
    this._filterEventFormName();
-
    this._pageDevs(this.paginaAtual,this.size);
-
 
   }
 
@@ -96,30 +90,32 @@ export class ListRenderComponent implements OnInit {
   public voltar():void {
     this._pageDevs(this.paginaAtual, this.size)
     if ( this.paginaAtual != 0) {
-      this.paginaAtual --
+      this.paginaAtual--
     }
+
   }
 
   public proximo():void {
     this._pageDevs(this.paginaAtual, this.size)
 
-  if (this.paginaAtual != 6) {
+  if (this.paginaAtual != 5) {
       this.paginaAtual++
     }
   }
 
+
+
   public onFilter():void{
       this.listService.listDevs(this.form.value).subscribe(res => {
 
-          this.devList=res;
+        this.devList=res;
 
       });
       this.listService.findAge(this.form.value).subscribe(res => {
 
-          this.devList=res;
+        this.devList=res;
 
       });
-
   }
 
 // Métodos Privados -- São metodos que não são usados no html --
@@ -154,15 +150,14 @@ export class ListRenderComponent implements OnInit {
       this.devList = list?.filter(res => res.name?.trim()?.toLowerCase().includes(name?.trim()?.toLowerCase()));
     }
 
-  private _searchDevAge(age?:string):void{
+  private _searchDevAge(age?:string):void{// Esse metodo fazia o filtro pro nome somente pelo frontEnd.
     let list = this.devs?.map(res => res);
 
     this.devList = list?.filter(res => res.age?.toString().includes(age?.trim()));
 
-
   }
 
-  private _pageDevs(page: number, size: number):void { // Esse método é responsavel de fazer a paginação
+  private _pageDevs(page: number, size: number):void { // Esse método é respons avel por fazer a paginação
     this.listService.getPageDev(page, size).subscribe(res => {
       this.devs = res.content
       this.devList =res.content;
@@ -170,7 +165,6 @@ export class ListRenderComponent implements OnInit {
     });
 
   }
-
   private _pagesDevsParms(page:number, size:number, ):void{
     this.listService.getPageDev(page,size).subscribe(res => {
        this.devs = res.content

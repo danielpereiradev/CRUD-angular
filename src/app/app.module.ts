@@ -22,8 +22,6 @@ import { PipesComponent } from './components/pipes/pipes.component';
 import { TowWayBindingComponent } from './components/tow-way-binding/tow-way-binding.component';
 import { FormsComponent } from './components/forms/forms.component';
 import { PaginaPrincipalComponent } from './components/pagina-principal/pagina-principal.component';
-import { BuscaDevComponent } from './components/busca-dev/busca-dev.component';
-import { TelaEdtarComponent } from './components/tela-edtar/tela-edtar.component';
 import { FilterPipe } from './pipes/filter.pipe';
 
 @NgModule({
@@ -39,8 +37,6 @@ import { FilterPipe } from './pipes/filter.pipe';
     TowWayBindingComponent,
     FormsComponent,
     PaginaPrincipalComponent,
-    BuscaDevComponent,
-    TelaEdtarComponent,
     FilterPipe,
 
   ],
