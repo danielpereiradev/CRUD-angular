@@ -12,6 +12,7 @@ export interface Page {
   first: boolean
   numberOfElements: number
   empty: boolean
+
 }
 
 
@@ -20,4 +21,3 @@ export interface PageQuery{
   pageSize:number
 }
 
-// export interface QueryBuider

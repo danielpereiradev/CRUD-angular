@@ -19,8 +19,9 @@ import { transition } from '@angular/animations';
 })
 export class ListRenderComponent implements OnInit {
 
-  form!: FormGroup
-  formAge!:FormGroup
+  public form!: FormGroup
+
+  public  formAge!:FormGroup
 
 
   private apiURL = "/api/developer"
@@ -31,15 +32,15 @@ export class ListRenderComponent implements OnInit {
 
 
 
-  dev: Devs[] = []
+ dev : Devs[] = []
   @Output() update = new EventEmitter(false)
 
 
-  pages:Page;
+  pages?:Page;
   paginaAtual= 0;
-  withResfresh=false
+  withResfresh=false;
 
-  total?: number
+  total?: number;
   size = 5;
 
 
@@ -59,7 +60,6 @@ export class ListRenderComponent implements OnInit {
    this._pageDevs(this.paginaAtual,this.size);
 
   }
-
 
   devs:Devs[]=[];
   devList: Devs[]=[];
@@ -98,13 +98,18 @@ export class ListRenderComponent implements OnInit {
   public proximo():void {
     this._pageDevs(this.paginaAtual, this.size)
 
-  if (this.paginaAtual != 5) {
+  if (this.paginaAtual != 9) {
       this.paginaAtual++
     }
   }
 
+  public proximo2():void{
+    this._pageDevs(this.pages.number,  this.pages.size)
+    if(this.pages.number != this.pages.numberOfElements){
+      this.pages.number++
+    }
 
-
+  }
   public onFilter():void{
       this.listService.listDevs(this.form.value).subscribe(res => {
 
@@ -117,6 +122,7 @@ export class ListRenderComponent implements OnInit {
 
       });
   }
+
 
 // Métodos Privados -- São metodos que não são usados no html --
 
@@ -172,7 +178,14 @@ export class ListRenderComponent implements OnInit {
 
     });
 
+
+
+
   }
+
+
+
+
 
 }
 

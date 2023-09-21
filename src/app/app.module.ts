@@ -5,11 +5,6 @@ import {HttpClientModule} from '@angular/common/http';
 import { ToastrModule, ToastrService, ToastrConfig } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgxPaginationModule } from 'ngx-pagination';
-
-
-
-
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { FistComponentComponent } from './components/fist-component/fist-component.component';
@@ -23,6 +18,7 @@ import { TowWayBindingComponent } from './components/tow-way-binding/tow-way-bin
 import { FormsComponent } from './components/forms/forms.component';
 import { PaginaPrincipalComponent } from './components/pagina-principal/pagina-principal.component';
 import { FilterPipe } from './pipes/filter.pipe';
+import { TesteNgPdfComponent } from './components/teste-ng-pdf/teste-ng-pdf.component';
 
 @NgModule({
   declarations: [
@@ -38,6 +34,8 @@ import { FilterPipe } from './pipes/filter.pipe';
     FormsComponent,
     PaginaPrincipalComponent,
     FilterPipe,
+    TesteNgPdfComponent,
+
 
   ],
   imports: [
@@ -48,8 +46,6 @@ import { FilterPipe } from './pipes/filter.pipe';
     ReactiveFormsModule,
     BrowserAnimationsModule,
     NgxPaginationModule,
-
-
     ToastrModule.forRoot({
 
     }),

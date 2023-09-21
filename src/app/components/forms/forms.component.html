@@ -2,30 +2,26 @@
   Um simples alerta danger. Olha só!
 </div> -->
 <div class="card-header">
-
-
-
-
-  <div class="tela-login">
-    <h2 class="title">Cadastro</h2>
-    <!-- <div class="alert alert-success" role="alert">
+    <div class="tela-login">
+        <h2 class="title">Cadastro</h2>
+        <!-- <div class="alert alert-success" role="alert">
     Um simples alerta success. Olha só!
   </div> -->
 
-    <form [formGroup]="form">
+        <form [formGroup]="form">
 
 
-      <div class="forms-gruop">
-        <label for="createDev">Nome</label>
-        <input type="text" class="form-control" formControlName="name" placeholder="Digite seu nome"
-          required="name != null ">
-        <!-- <div *ngIf="name.invalid && formDir.submitted"class="validation-error">
+            <div class="forms-gruop">
+                <label for="createDev">Nome</label>
+                <input type="text" class="form-control" formControlName="name" placeholder="Digite seu nome"
+                    required="name != null ">
+                <!-- <div *ngIf="name.invalid && formDir.submitted"class="validation-error">
           <p>O nome é <strong>Obrigatorio</strong></p>
         </div> -->
-        <small id="emailHelp" class="forms-txt  text-muted"></small>
-      </div>
+                <small id="emailHelp" class="forms-txt  text-muted"></small>
+            </div>
 
-      <!-- <div class="forms-gruop">
+            <!-- <div class="forms-gruop">
         <label for="createDev">Idade</label>
         <input type="number" class="form-control" formControlName="age" placeholder="Digite sua idade"
         required="age != 0">
@@ -34,25 +30,20 @@
 
 
       </div > -->
-      <label>Email</label>
-      <input type="email" class="form-control" formControlName="email" placeholder="Digite seu email"
-        required="email != null">
+            <label>Email</label>
+            <input type="email" class="form-control" formControlName="email" placeholder="Digite seu email"
+                required="email != null">
 
 
-      <label for="idade">Idade </label>
-      <input id="idade" type="text" class="form-control" formControlName="age" required="age != null">
-      <div>
-      </div>
-      <button type="submit" class="btn btn-primary" (click)="onSubmit()">Salvar
-      </button>
-      <button type="submit" class="btn btn-danger" (click)="onCancel()">Cancelar
-        <!-- <a id="cancel" routerLink="/">Cancelar</a> -->
-      </button>
-    </form>
-
-
-
-
-
-  </div>
+            <label for="idade">Idade </label>
+            <input id="idade" type="text" class="form-control" formControlName="age" required="age != null">
+            <div>
+            </div>
+            <button type="submit" class="btn btn-primary" (click)="onSubmit()">Salvar
+            </button>
+            <button type="submit" class="btn btn-danger" (click)="onCancel()">Cancelar
+                <!-- <a id="cancel" routerLink="/">Cancelar</a> -->
+            </button>
+        </form>
+    </div>
 </div>
