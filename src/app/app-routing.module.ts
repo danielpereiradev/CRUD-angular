@@ -20,7 +20,8 @@ const routes:Routes= [
   {path:'if',component:IfRenderComponent},
   {path:'forms',component:FormsComponent},
   {path:"editar/:id",component:FormsComponent},
-  {path:'teste-ngPdf', component:TesteNgPdfComponent}
+  {path:'teste-ngPdf', component:TesteNgPdfComponent},
+  {path: 'teste-ngEditor', component:TesteNgPdfComponent}
 ]
 
 @NgModule({

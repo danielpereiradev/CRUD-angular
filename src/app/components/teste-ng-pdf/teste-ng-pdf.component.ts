@@ -1,3 +1,4 @@
+;
 import { Component, OnInit } from '@angular/core';
 import { jsPDF, TableCellData, TableConfig, TableRowData } from "jspdf";
 import { ElementRef, ViewChild } from '@angular/core';
@@ -11,6 +12,28 @@ export class TesteNgPdfComponent implements OnInit {
 
   public table:TableConfig;
   public dataTable:TableRowData;
+
+  config:  {
+    "editable": true,
+    "spellcheck": true,
+    "height": "auto",
+    "minHeight": "200px",
+    "width": "auto",
+    "minWidth": "0",
+    "translate": "yes",
+    "enableToolbar": true,
+    "showToolbar": true,
+    "placeholder": "Digite...",
+    "imageEndPoint": "",
+    "toolbar": [
+      ["bold", "italic", "underline", "strikeThrough", "superscript", "subscript"],
+      ["fontName", "fontSize", "color"],
+      ["justifyLeft", "justifyCenter", "justifyRight", "justifyFull", "indent", "outdent"],
+      ["cut", "copy", "delete", "removeFormat", "undo", "redo"],
+      ["paragraph", "blockquote", "removeBlockquote", "horizontalLine", "orderedList", "unorderedList"],
+    ]
+  };
+
 
   @ViewChild('content', {static: false}) tableDetails!: ElementRef
 

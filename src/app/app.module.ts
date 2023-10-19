@@ -1,3 +1,5 @@
+import { NgxTextEditorModule } from 'ngx-text-editor';
+
 import { NgModule, Injectable } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -49,6 +51,10 @@ import { TesteNgPdfComponent } from './components/teste-ng-pdf/teste-ng-pdf.comp
     ToastrModule.forRoot({
 
     }),
+    NgxTextEditorModule,
+
+
+
 
   ],
   providers: [],
